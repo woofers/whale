@@ -1,0 +1,4 @@
+-main /source/Main.hx
+-swf test.swf
+-lib flixel
+-lib openfl
