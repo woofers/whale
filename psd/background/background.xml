@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextureAtlas imagePath="background.png">
+		<SubTexture name="0" x="0" y="0" width="1080" height="2048"/>
+		<SubTexture name="1" x="0" y="2048" width="1080" height="2048"/>
+		<SubTexture name="2" x="0" y="4096" width="1080" height="2048"/>
+		<SubTexture name="3" x="0" y="6144" width="1080" height="2048"/>
+		<SubTexture name="4" x="0" y="8192" width="1080" height="2048"/>
+		<SubTexture name="5" x="0" y="10240" width="1080" height="1280"/>
+</TextureAtlas>
