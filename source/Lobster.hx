@@ -20,7 +20,6 @@ class Lobster extends FlxSprite
 	/*----------------------------------------------------
 	Private Variables
 	-----------------------------------------------------*/
-
 	/*----------------------------------------------------
 	Function: New
 	Description: Called when the sprite is added to a state
@@ -34,10 +33,10 @@ class Lobster extends FlxSprite
 
 		// Load Spritesheet
 		loadGraphicFromTexture(new SparrowData("assets/images/sprites/lobster.xml", "assets/images/sprites/lobster.png"));
-		
+
 		// Create Animations
 		animation.addByPrefix("grab", "Grab", 9);
-		
+
 		// Max velocities on player
 		maxVelocity.set(500, 600);
 
@@ -54,7 +53,7 @@ class Lobster extends FlxSprite
 	{
 		super.kill();
 	}
-	
+
 	/*----------------------------------------------------
 	Function: Update
 	Description: Called 60 times a second
@@ -72,7 +71,7 @@ class Lobster extends FlxSprite
 	-----------------------------------------------------*/
 	public function setPos(direction, posY):Void
 	{
-		switch (direction) 
+		switch (direction)
 		{
 			// Left
 			case 0:
@@ -80,7 +79,7 @@ class Lobster extends FlxSprite
 				// Set Positions
 				x = -100;
 				y = posY;
-			
+
 				// Set Scale
 				scale.x = 1;
 
@@ -90,7 +89,7 @@ class Lobster extends FlxSprite
 				// Set Positions
 				x = 800;
 				y = posY;
-			
+
 				// Set Scale
 				scale.x = -1;
 

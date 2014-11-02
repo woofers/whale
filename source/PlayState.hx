@@ -31,7 +31,7 @@ class PlayState extends FlxState
 	/*----------------------------------------------------
 	Public Variables
 	-----------------------------------------------------*/
-	
+
 	public static var pauseMenu:PauseMenu;
 
 	// Player
@@ -77,7 +77,7 @@ class PlayState extends FlxState
 		killGroup = new flixel.group.FlxSpriteGroup();
 		LevelGenerator.generate();
 		add(killGroup);
-		
+
 		createPauseMenu();
 		createPauseGameButton();
 
@@ -85,7 +85,7 @@ class PlayState extends FlxState
 		FlxG.camera.setBounds(0, 0, 1080, 11520, true);
 		FlxG.camera.follow(player, FlxCamera.STYLE_PLATFORMER);
 	}
-	
+
 	/*----------------------------------------------------
 	Function: Destroy
 	Description: Called when this state is destroyed
@@ -160,7 +160,7 @@ class PlayState extends FlxState
 	{
 		pauseMenu = new PauseMenu();
 	}
-	
+
 	/*----------------------------------------------------
 	Function: createPauseGameButton
 	Description: Creates the button to pause the game
@@ -173,7 +173,7 @@ class PlayState extends FlxState
 		pauseButton.scrollFactor.x = pauseButton.scrollFactor.y = 0;
 		add(pauseButton);
 	}
-	
+
 	/*----------------------------------------------------
 	Function: pauseGame
 	Description: Function called by the a button to pause the game
@@ -181,9 +181,11 @@ class PlayState extends FlxState
 	-----------------------------------------------------*/
 	private function pauseGame():Void
 	{
+		// Hide Other UI Elements
 		pauseButton.visible = false;
 		scoreHeader.visible = false;
 		scoreField.visible = false;
+
 		openSubState(pauseMenu);
 	}
 }

@@ -115,6 +115,7 @@ class PauseMenu extends FlxSubState
 		close();
 		PlayState.createPauseMenu();
 
+		// Show Hidden UI Elements
 		PlayState.pauseButton.visible = true;
 		PlayState.scoreHeader.visible = true;
 		PlayState.scoreField.visible = true;

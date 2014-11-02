@@ -37,10 +37,10 @@ class Eel extends FlxSprite
 
 		// Load Spritesheet
 		loadGraphicFromTexture(new SparrowData("assets/images/sprites/eel.xml", "assets/images/sprites/eel.png"));
-		
+
 		// Create Animations
 		animation.addByPrefix("swim", "Swim", 9);
-		
+
 		// Max velocities on player
 		maxVelocity.set(500, 600);
 
@@ -57,7 +57,7 @@ class Eel extends FlxSprite
 	{
 		super.kill();
 	}
-	
+
 	/*----------------------------------------------------
 	Function: Update
 	Description: Called 60 times a second
@@ -78,10 +78,10 @@ class Eel extends FlxSprite
 				acceleration.x -= movingSpeed;
 			}
 		}
-		
+
 		super.update();
 	}
-	
+
 	/*----------------------------------------------------
 	Function: setPos
 	Description: Sets position of the eels
@@ -94,7 +94,7 @@ class Eel extends FlxSprite
 			// Set Positions
 			x = -550 - 220;
 			y = posY;
-			
+
 			// Set Scale
 			scale.x = 1;
 		}
@@ -108,7 +108,7 @@ class Eel extends FlxSprite
 			scale.x = -1;
 		}
 	}
-	
+
 	/*----------------------------------------------------
 	Function: playerIsNear
 	Description: Check if the player is near enough for the eel to start moving

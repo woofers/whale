@@ -22,7 +22,7 @@ class MenuState extends FlxState
 	/*----------------------------------------------------
 	Private Variables
 	-----------------------------------------------------*/
-	
+
 	private var bg:FlxSprite;
 
 	/*----------------------------------------------------
@@ -63,5 +63,5 @@ class MenuState extends FlxState
 		{
 			FlxG.switchState(new PlayState());
 		}
-	}	
+	}
 }

@@ -29,7 +29,7 @@ class Player extends FlxSprite
 
 	private var swimmingSpeed:Int = 600;
 	private var hitTime:Int = 0;
-	
+
 	/*----------------------------------------------------
 	Function: New
 	Description: Called when the sprite is added to a state
@@ -46,22 +46,23 @@ class Player extends FlxSprite
 
 		// Load Spritesheet
 		loadGraphicFromTexture(new SparrowData("assets/images/sprites/player.xml", "assets/images/sprites/player.png"));
-		
+
 		// Create Animations
 		animation.addByPrefix("swim", "Swim", 11);
-		
+
 		// Max Velocities on Player
 		maxVelocity.set(500, 600);
-		
+
 		// Simulate Descending or Ascending on the Player
 		acceleration.y = swimmingSpeed;
 
 		// Drag
 		drag.x = maxVelocity.x * 4;
 
+		// Set Hitbox For Current Dirrection
 		hitBox();
 	}
-	
+
 	/*----------------------------------------------------
 	Function: Update
 	Description: Called 60 times a second
@@ -112,7 +113,23 @@ class Player extends FlxSprite
 
 		super.update();
 	}
-	
+
+
+	/*----------------------------------------------------
+	Function: hitTolerance
+	Description: Makes sure the player is in contact with the enemy for a more than 0.01 of a second
+	Returns: Void
+	-----------------------------------------------------*/
+	private function hitTolerance():Void
+	{
+		hitTime ++;
+
+		if (hitTime > 24)
+		{
+			resetPlayer();
+		}
+	}
+
 	/*----------------------------------------------------
 	Function: resetPlayer
 	Description: Resets the player and the enemies
@@ -127,7 +144,7 @@ class Player extends FlxSprite
 
 		LevelGenerator.reset();
 	}
-	
+
 	/*----------------------------------------------------
 	Function: hitBox
 	Description: Adjust hitbox for facing right or left
@@ -163,14 +180,14 @@ class Player extends FlxSprite
 		{
 			// Switchs Dirrection
 			acceleration.y = -swimmingSpeed;
-			
+
 			// Flip Player
 			scale.x = -scale.x;
 			scale.y = -scale.y;
 
 			// Adjust Hitbox
 			hitBox();
-			
+
 			LevelGenerator.reset();
 		}
 
@@ -179,7 +196,7 @@ class Player extends FlxSprite
 		{
 			// Switchs Dirrection
 			acceleration.y = swimmingSpeed;
-			
+
 			// Flip Player
 			scale.x = -scale.x;
 			scale.y = -scale.y;
@@ -190,7 +207,7 @@ class Player extends FlxSprite
 			LevelGenerator.reset();
 		}
 	}
-	
+
 	/*----------------------------------------------------
 	Function: isGoingDown
 	Description: Return whether or not the player is falling down
@@ -225,22 +242,7 @@ class Player extends FlxSprite
 
 		return false;
 	}
-	
-	/*----------------------------------------------------
-	Function: hitTolerance
-	Description: Makes sure the player is in contact with the enemy for a more than 0.01 of a second
-	Returns: Void
-	-----------------------------------------------------*/
-	private function hitTolerance():Void
-	{
-		hitTime ++;
 
-		if (hitTime > 24)
-		{
-			resetPlayer();
-		}
-	}
-	
 	/*----------------------------------------------------
 	Function: screenBounds
 	Description: Creates a invisible screen boundary for the player
