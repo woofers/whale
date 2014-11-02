@@ -9,7 +9,7 @@ import flixel.util.loaders.SparrowData;
 /*----------------------------------------------------
 Class: Player
 Description: The character the player controls
-Condition: Needs work
+Condition: Tidy
 Author: Jaxson Van Doorn, 2014
 -----------------------------------------------------*/
 class Player extends FlxSprite
@@ -143,6 +143,9 @@ class Player extends FlxSprite
 		hitTime = 0;
 
 		LevelGenerator.reset();
+
+		PlayState.scoreValue = "0";
+		PlayState.scoreField.text = PlayState.scoreValue;
 	}
 
 	/*----------------------------------------------------
@@ -213,9 +216,9 @@ class Player extends FlxSprite
 	Description: Return whether or not the player is falling down
 	Returns: Bool
 	-----------------------------------------------------*/
-	private function isGoingDown():Bool
+	public static function isGoingDown():Bool
 	{
-		if (acceleration.y > 0)
+		if (PlayState.player.acceleration.y > 0)
 		{
 			return true;
 		}

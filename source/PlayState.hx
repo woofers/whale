@@ -126,7 +126,7 @@ class PlayState extends FlxState
 		// Score
 		scoreField = new FlxBitmapTextField(fontStyle);
 		scoreField.scrollFactor.x = scoreField.scrollFactor.y = 0;
-		scoreField.text = "1234";
+		scoreField.text = "0";
 		scoreField.useTextColor = false;
 		scoreField.color = 0xffEE4D4D;
 		scoreField.x = 45;

@@ -68,7 +68,7 @@ class LevelGenerator
 				// Moving Eel
 				case 0:
 					addEel(FlxRandom.chanceRoll(50), y);
-				
+
 				// Static Lobster
 				case 1:
 					isFirstLobster = true;
@@ -77,11 +77,11 @@ class LevelGenerator
 					{
 						addLobster(y);
 					}
-				
+
 				// NULL
 				case 2:
 					trace(2);
-				
+
 				// NULL
 				default:
 					trace("default");
@@ -172,7 +172,7 @@ class LevelGenerator
 		LevelGenerator.removeEnemies();
 		LevelGenerator.generate();
 	}
-	
+
 	/*----------------------------------------------------
 	Function: radom
 	Description: Randomly choses what enemy to spawn and decreases the chance of getting the same one twice in a row
@@ -197,7 +197,7 @@ class LevelGenerator
 			{
 				return eelCode;
 			}
-			
+
 			return lobsterCode;
 		}
 		else

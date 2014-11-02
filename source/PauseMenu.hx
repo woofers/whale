@@ -69,7 +69,7 @@ class PauseMenu extends FlxSubState
 
 		// Score
 		scoreField = new FlxBitmapTextField(fontStyle);
-		scoreField.text = "101";
+		scoreField.text = PlayState.scoreValue;
 		scoreField.scrollFactor.x = scoreField.scrollFactor.y = 0;
 		scoreField.useTextColor = false;
 		scoreField.color = 0xffEE4D4D;

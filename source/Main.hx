@@ -67,4 +67,17 @@ class Main extends Sprite
 
 		addChild(new MyFlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
 	}
+
+	public static function intToString(i:Int):String
+	{
+		var strbuf:StringBuf = new StringBuf();
+		strbuf.add(i);
+		return strbuf.toString();
+	}
+
+	public static function setScore(value:Int):Void
+	{
+		PlayState.scoreValue = Main.intToString(Std.parseInt(PlayState.scoreValue) + value);
+		PlayState.scoreField.text = PlayState.scoreValue;
+	}
 }

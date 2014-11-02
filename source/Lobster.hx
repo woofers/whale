@@ -20,6 +20,9 @@ class Lobster extends FlxSprite
 	/*----------------------------------------------------
 	Private Variables
 	-----------------------------------------------------*/
+
+	private static var bool:Bool;
+
 	/*----------------------------------------------------
 	Function: New
 	Description: Called when the sprite is added to a state
@@ -61,6 +64,26 @@ class Lobster extends FlxSprite
 	-----------------------------------------------------*/
 	override public function update():Void
 	{
+		// Add To Score When Passed
+		if (Player.isGoingDown())
+		{
+			if (PlayState.player.y > y && !bool)
+			{
+				Main.setScore(5);
+				bool = true;
+				trace("paased lobster at" + y);
+			}
+		}
+		else
+		{
+			if (PlayState.player.y < y && !bool)
+			{
+				Main.setScore(5);
+				bool = true;
+				trace("paased lobster at" + y);
+			}
+		}
+
 		super.update();
 	}
 

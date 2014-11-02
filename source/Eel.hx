@@ -22,6 +22,7 @@ class Eel extends FlxSprite
 	-----------------------------------------------------*/
 
 	private var movingSpeed:Int = 13;
+	private var bool:Bool;
 
 	/*----------------------------------------------------
 	Function: New
@@ -68,7 +69,7 @@ class Eel extends FlxSprite
 		// Move when Player is Near
 		if (playerIsNear())
 		{
-			// Controlls Dirrection Moving
+			// Control Direction Moving
 			if (scale.x > 0)
 			{
 				acceleration.x += movingSpeed;
@@ -76,6 +77,24 @@ class Eel extends FlxSprite
 			else
 			{
 				acceleration.x -= movingSpeed;
+			}
+		}
+
+		// Add To Score When Passed
+		if (Player.isGoingDown())
+		{
+			if (PlayState.player.y > y && !bool)
+			{
+				Main.setScore(10);
+				bool = true;
+			}
+		}
+		else
+		{
+			if (PlayState.player.y < y && !bool)
+			{
+				Main.setScore(10);
+				bool = true;
 			}
 		}
 
