@@ -3,7 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
-import flixel.util.loaders.SparrowData;
+import flixel.graphics.frames.FlxAtlasFrames;
 
 /*----------------------------------------------------
 Class: Eel
@@ -13,14 +13,6 @@ Author: Jaxson Van Doorn, 2014
 -----------------------------------------------------*/
 class Eel extends FlxSprite
 {
-	/*----------------------------------------------------
-	Public Variables
-	-----------------------------------------------------*/
-
-	/*----------------------------------------------------
-	Private Variables
-	-----------------------------------------------------*/
-
 	private var movingSpeed:Int = 13;
 	private var bool:Bool;
 
@@ -37,7 +29,8 @@ class Eel extends FlxSprite
 		setPos(direction, posY);
 
 		// Load Spritesheet
-		loadGraphicFromTexture(new SparrowData("assets/images/sprites/eel.xml", "assets/images/sprites/eel.png"));
+		frames = FlxAtlasFrames.fromSparrow("assets/images/sprites/eel.png",
+                                            "assets/images/sprites/eel.xml");
 
 		// Create Animations
 		animation.addByPrefix("swim", "Swim", 9);
@@ -64,7 +57,7 @@ class Eel extends FlxSprite
 	Description: Called 60 times a second
 	Returns: Void
 	-----------------------------------------------------*/
-	override public function update():Void
+  override public function update(dt:Float):Void
 	{
 		// Move when Player is Near
 		if (playerIsNear())
@@ -98,7 +91,7 @@ class Eel extends FlxSprite
 			}
 		}
 
-		super.update();
+		super.update(dt);
 	}
 
 	/*----------------------------------------------------

@@ -4,9 +4,9 @@ import flixel.FlxG;
 import flixel.ui.FlxButton;
 import flixel.FlxSubState;
 import flixel.FlxSprite;
-import flixel.text.FlxBitmapTextField;
-import flixel.text.pxText.PxBitmapFont;
-import flixel.text.pxText.PxTextAlign;
+import flixel.text.FlxBitmapText;
+import flixel.graphics.frames.FlxBitmapFont;
+import flixel.text.FlxText;
 import openfl.Assets;
 import flixel.util.FlxColor;
 
@@ -34,8 +34,8 @@ class PauseMenu extends FlxSubState
 
 	// Score
 	private var scoreValue:String;
-	private var scoreField:FlxBitmapTextField;
-	private var fontStyle:PxBitmapFont;
+	private var scoreField:FlxBitmapText;
+	private var fontStyle:FlxBitmapFont;
 
 	// Buttons
 	private var resumeButton:FlxButton;
@@ -65,10 +65,10 @@ class PauseMenu extends FlxSubState
 		add(scoreHeader);
 
 		// Font Style
-		fontStyle = new PxBitmapFont().loadAngelCode(Assets.getBitmapData("assets/font/font.png"), Xml.parse(Assets.getText("assets/font/font.fnt")));
+		fontStyle = FlxBitmapFont.fromAngelCode(Assets.getBitmapData("assets/font/font.png"), Xml.parse(Assets.getText("assets/font/font.fnt")));
 
 		// Score
-		scoreField = new FlxBitmapTextField(fontStyle);
+		scoreField = new FlxBitmapText(fontStyle);
 		scoreField.text = PlayState.scoreValue;
 		scoreField.scrollFactor.x = scoreField.scrollFactor.y = 0;
 		scoreField.useTextColor = false;
@@ -100,9 +100,9 @@ class PauseMenu extends FlxSubState
 	Description: Called 60 times a second
 	Returns: Void
 	-----------------------------------------------------*/
-	override public function update():Void
+    override public function update(dt:Float):Void
 	{
-		super.update();
+		super.update(dt);
 	}
 
 	/*----------------------------------------------------

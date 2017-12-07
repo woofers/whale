@@ -5,7 +5,7 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
-import flixel.util.FlxMath;
+import flixel.math.FlxMath;
 
 /*----------------------------------------------------
 Class: MenuState
@@ -55,13 +55,9 @@ class MenuState extends FlxState
 	Description: Called 60 times a second
 	Returns: Void
 	-----------------------------------------------------*/
-	override public function update():Void
+    override public function update(dt:Float):Void
 	{
-		super.update();
-
-		if (true)
-		{
-			FlxG.switchState(new PlayState());
-		}
+		super.update(dt);
+        FlxG.switchState(new PlayState());
 	}
 }

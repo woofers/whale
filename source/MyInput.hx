@@ -1,7 +1,7 @@
 package;
 
 import flixel.FlxG;
-import flixel.util.FlxMath;
+import flixel.math.FlxMath;
 
 /*----------------------------------------------------
 Class: MyInput

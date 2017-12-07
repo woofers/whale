@@ -3,7 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
-import flixel.util.loaders.SparrowData;
+import flixel.graphics.frames.FlxAtlasFrames;
 
 /*----------------------------------------------------
 Class: Lobster
@@ -35,7 +35,11 @@ class Lobster extends FlxSprite
 		setPos(direction, posY);
 
 		// Load Spritesheet
-		loadGraphicFromTexture(new SparrowData("assets/images/sprites/lobster.xml", "assets/images/sprites/lobster.png"));
+
+
+		frames = FlxAtlasFrames.fromSparrow(
+                "assets/images/sprites/lobster.png",
+                "assets/images/sprites/lobster.xml");
 
 		// Create Animations
 		animation.addByPrefix("grab", "Grab", 9);
@@ -62,7 +66,7 @@ class Lobster extends FlxSprite
 	Description: Called 60 times a second
 	Returns: Void
 	-----------------------------------------------------*/
-	override public function update():Void
+  override public function update(dt:Float):Void
 	{
 		// Add To Score When Passed
 		if (Player.isGoingDown())
@@ -71,7 +75,6 @@ class Lobster extends FlxSprite
 			{
 				Main.setScore(5);
 				bool = true;
-				trace("paased lobster at" + y);
 			}
 		}
 		else
@@ -80,11 +83,10 @@ class Lobster extends FlxSprite
 			{
 				Main.setScore(5);
 				bool = true;
-				trace("paased lobster at" + y);
 			}
 		}
 
-		super.update();
+		super.update(dt);
 	}
 
 	/*----------------------------------------------------

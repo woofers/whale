@@ -4,7 +4,7 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.util.FlxCollision;
-import flixel.util.loaders.SparrowData;
+import flixel.graphics.frames.FlxAtlasFrames;
 
 /*----------------------------------------------------
 Class: Player
@@ -45,7 +45,8 @@ class Player extends FlxSprite
 		super(startX, startY);
 
 		// Load Spritesheet
-		loadGraphicFromTexture(new SparrowData("assets/images/sprites/player.xml", "assets/images/sprites/player.png"));
+		this.frames = FlxAtlasFrames.fromSparrow("assets/images/sprites/player.png",
+                                               "assets/images/sprites/player.xml");
 
 		// Create Animations
 		animation.addByPrefix("swim", "Swim", 11);
@@ -68,7 +69,7 @@ class Player extends FlxSprite
 	Description: Called 60 times a second
 	Returns: Void
 	-----------------------------------------------------*/
-	override public function update():Void
+  override public function update(dt:Float):Void
 	{
 		// Rest Acceleration
 		acceleration.x = 0;
@@ -111,9 +112,8 @@ class Player extends FlxSprite
 		else
 		{}
 
-		super.update();
+		super.update(dt);
 	}
-
 
 	/*----------------------------------------------------
 	Function: hitTolerance

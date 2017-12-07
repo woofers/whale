@@ -6,8 +6,8 @@ import flixel.FlxCamera;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
-import flixel.util.FlxMath;
-import flixel.util.FlxRandom;
+import flixel.math.FlxMath;
+import flixel.math.FlxRandom;
 
 /*----------------------------------------------------
 Class: LevelGenerator
@@ -55,11 +55,11 @@ class LevelGenerator
 		{
 			if (PlayState.player.acceleration.y > 0)
 			{
-				y += FlxRandom.intRanged(ySpacingMin, ySpacingMax);
+				y += FlxG.random.int(ySpacingMin, ySpacingMax);
 			}
 			else
 			{
-				y -= FlxRandom.intRanged(ySpacingMin, ySpacingMax);
+				y -= FlxG.random.int(ySpacingMin, ySpacingMax);
 			}
 
 			// Spawns a enemy
@@ -67,13 +67,13 @@ class LevelGenerator
 			{
 				// Moving Eel
 				case 0:
-					addEel(FlxRandom.chanceRoll(50), y);
+					addEel(FlxG.random.bool(50), y);
 
 				// Static Lobster
 				case 1:
 					isFirstLobster = true;
 
-					for (i in 0... FlxRandom.intRanged(1, 2))
+					for (i in 0... FlxG.random.int(1, 2))
 					{
 						addLobster(y);
 					}
@@ -112,7 +112,7 @@ class LevelGenerator
 
 		if (isFirstLobster)
 		{
-			lobsterRoll = FlxRandom.intRanged(0, 1);
+			lobsterRoll = FlxG.random.int(0, 1);
 		}
 		else
 		{
@@ -174,7 +174,7 @@ class LevelGenerator
 	}
 
 	/*----------------------------------------------------
-	Function: radom
+	Function: random
 	Description: Randomly choses what enemy to spawn and decreases the chance of getting the same one twice in a row
 	Returns: Void
 	-----------------------------------------------------*/
@@ -182,7 +182,7 @@ class LevelGenerator
 	{
 		if (lastSpawned == eelCode)
 		{
-			if (!FlxRandom.chanceRoll(38))
+			if (!FlxG.random.bool(38))
 			{
 				return eelCode;
 			}
@@ -193,7 +193,7 @@ class LevelGenerator
 		}
 		else if (lastSpawned == lobsterCode)
 		{
-			if (!FlxRandom.chanceRoll(35))
+			if (!FlxG.random.bool(35))
 			{
 				return eelCode;
 			}
@@ -202,7 +202,7 @@ class LevelGenerator
 		}
 		else
 		{
-			return 0;
+            return eelCode;
 		}
 	}
 }

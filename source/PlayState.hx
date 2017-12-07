@@ -2,19 +2,19 @@ package;
 
 import flixel.FlxG;
 import flixel.group.FlxGroup;
-import flixel.group.FlxTypedGroup;
 import flixel.util.FlxCollision;
 import flixel.FlxCamera;
+import flixel.FlxCamera.FlxCameraFollowStyle;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.ui.FlxButton;
 import flixel.text.FlxText;
-import flixel.util.FlxMath;
-import flixel.util.FlxRandom;
+import flixel.math.FlxMath;
+import flixel.math.FlxRandom;
 
-import flixel.text.FlxBitmapTextField;
-import flixel.text.pxText.PxBitmapFont;
-import flixel.text.pxText.PxTextAlign;
+import flixel.text.FlxBitmapText;
+import flixel.graphics.frames.FlxBitmapFont;
+import flixel.text.FlxText;
 import openfl.Assets;
 import flixel.util.FlxColor;
 import flixel.FlxSubState;
@@ -45,7 +45,7 @@ class PlayState extends FlxState
 
 	// Score
 	public static var scoreValue:String;
-	public static var scoreField:FlxBitmapTextField;
+	public static var scoreField:FlxBitmapText;
 
 	// Pause Button
 	public static var pauseButton:FlxButton;
@@ -55,7 +55,7 @@ class PlayState extends FlxState
 	-----------------------------------------------------*/
 
 	// Score
-	private var fontStyle:PxBitmapFont;
+	private var fontStyle:FlxBitmapFont;
 
 	/*----------------------------------------------------
 	Function: Create
@@ -82,8 +82,8 @@ class PlayState extends FlxState
 		createPauseGameButton();
 
 		// Camera
-		FlxG.camera.setBounds(0, 0, 1080, 11520, true);
-		FlxG.camera.follow(player, FlxCamera.STYLE_PLATFORMER);
+		FlxG.camera.setScrollBoundsRect(0, 0, 1080, 11520, true);
+		FlxG.camera.follow(player, FlxCameraFollowStyle.PLATFORMER);
 	}
 
 	/*----------------------------------------------------
@@ -101,9 +101,9 @@ class PlayState extends FlxState
 	Description: Called 60 times a second
 	Returns: Void
 	-----------------------------------------------------*/
-	override public function update():Void
+  override public function update(dt:Float):Void
 	{
-		super.update();
+		super.update(dt);
 	}
 
 	/*----------------------------------------------------
@@ -121,10 +121,13 @@ class PlayState extends FlxState
 		add(scoreHeader);
 
 		// Font Style
-		fontStyle = new PxBitmapFont().loadAngelCode(Assets.getBitmapData("assets/font/font.png"), Xml.parse(Assets.getText("assets/font/font.fnt")));
+		fontStyle = FlxBitmapFont.fromAngelCode(
+                Assets.getBitmapData(
+                     "assets/font/font.png"),
+                     Xml.parse(Assets.getText("assets/font/font.fnt")));
 
 		// Score
-		scoreField = new FlxBitmapTextField(fontStyle);
+		scoreField = new FlxBitmapText(fontStyle);
 		scoreField.scrollFactor.x = scoreField.scrollFactor.y = 0;
 		scoreField.text = "0";
 		scoreField.useTextColor = false;
@@ -132,10 +135,10 @@ class PlayState extends FlxState
 		scoreField.x = 45;
 		scoreField.y = 80;
 
-		scoreField.alignment = PxTextAlign.CENTER;
+		scoreField.alignment = FlxTextAlign.CENTER;
 		scoreField.multiLine = true;
 		scoreField.wordWrap = false;
-		scoreField.fixedWidth = false;
+		//scoreField._fixedWidth = false;
 
 		add(scoreField);
 	}
