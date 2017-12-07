@@ -1,2 +1,2 @@
-REM haxelib run openfl build project.xml flash
-haxelib run openfl build project.xml windows
+haxelib run openfl build project.xml flash
+REM haxelib run openfl build project.xml windows

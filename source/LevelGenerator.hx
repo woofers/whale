@@ -1,59 +1,50 @@
 package;
 
 import flixel.FlxG;
-import flixel.group.FlxGroup;
 import flixel.FlxCamera;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.math.FlxMath;
 import flixel.math.FlxRandom;
+import flixel.group.FlxGroup;
+import flixel.group.FlxSpriteGroup;
 
-/*----------------------------------------------------
-Class: LevelGenerator
-Description: Handles level generation
-Condition: Ok
-Author: Jaxson Van Doorn, 2014
------------------------------------------------------*/
+/**
+   Author: Jaxson Van Doorn
+**/
 class LevelGenerator
 {
-	/*----------------------------------------------------
-	Public Variables
-	-----------------------------------------------------*/
-
-	public static var eel:Eel;
-	public static var lobster:Lobster;
-
-	/*----------------------------------------------------
-	Private Variables
-	-----------------------------------------------------*/
-
-	private static var lobsterRoll:Int;
 	private static var isFirstLobster:Bool;
+	private static var direction:Int;
+    private var player:Player;
+    private var enemies:FlxSpriteGroup;
 
 	// Spacing
 	private static var y:Int;
-	private static var ySpacingMax:Int = 600;
-	private static var ySpacingMin:Int = 520;
-
-	private static var lastSpawned:Int;	// 0 Eel || 1 Lobster
+	private static inline var ySpacingMax:Int = 600;
+	private static inline var ySpacingMin:Int = 520;
+    private static inline var spawnLimit:Int = 14;
 
 	// Character Codes
 	private static var eelCode:Int = 0;
 	private static var lobsterCode:Int = 1;
+	private static var lastSpawned:Int;	// 0 Eel || 1 Lobster
 
-	/*----------------------------------------------------
-	Function: Generate
-	Description: Main generating function
-	Returns: Void
-	-----------------------------------------------------*/
-	public static function generate():Void
+    public function new(player:Player, enemies:FlxSpriteGroup):Void
+    {
+        this.player = player;
+        this.enemies = enemies;
+        generate();
+    }
+
+	public function generate():Void
 	{
 		y = startY();
 
-		for (i in 0... 14)
+		for (i in 0... spawnLimit)
 		{
-			if (PlayState.player.acceleration.y > 0)
+			if (player.acceleration.y > 0)
 			{
 				y += FlxG.random.int(ySpacingMin, ySpacingMax);
 			}
@@ -63,7 +54,7 @@ class LevelGenerator
 			}
 
 			// Spawns a enemy
-			switch (random())
+            switch (random())
 			{
 				// Moving Eel
 				case 0:
@@ -72,17 +63,12 @@ class LevelGenerator
 				// Static Lobster
 				case 1:
 					isFirstLobster = true;
-
+                    trace("Lobster");
 					for (i in 0... FlxG.random.int(1, 2))
 					{
 						addLobster(y);
 					}
 
-				// NULL
-				case 2:
-					trace(2);
-
-				// NULL
 				default:
 					trace("default");
 			}
@@ -94,11 +80,10 @@ class LevelGenerator
 	Description: Spawn and add eels to the group
 	Returns: Void
 	-----------------------------------------------------*/
-	public static function addEel(direction, posY):Void
+	public function addEel(direction, posY):Void
 	{
-		eel = new Eel(direction, posY);
-		PlayState.killGroup.add(eel);
-		lastSpawned = 0;
+        enemies.add(new Eel(direction, posY));
+		lastSpawned = eelCode;
 	}
 
 	/*----------------------------------------------------
@@ -106,55 +91,45 @@ class LevelGenerator
 	Description: Spawn and add lobster to the group
 	Returns: Void
 	-----------------------------------------------------*/
-	public static function addLobster(posY):Void
+	public function addLobster(posY):Void
 	{
 		// 0 Left | 1 Right | 2 Middle
 
 		if (isFirstLobster)
 		{
-			lobsterRoll = FlxG.random.int(0, 1);
+			direction = FlxG.random.int(0, 1);
 		}
 		else
 		{
-			if (lobsterRoll == 1)
-			{
-				lobsterRoll = 0;
-			}
-			else if (lobsterRoll == 0)
-			{
-				lobsterRoll = 1;
-			}
+          if (direction == 0)
+          {
+              direction = 1;
+          }
+          else
+          {
+              direction = 0;
+          }
 		}
-
-		lobster = new Lobster(lobsterRoll, posY);
-		PlayState.killGroup.add(lobster);
-
-		lastSpawned = 1;
-
+		enemies.add(new Lobster(direction, posY));
+		lastSpawned = lobsterCode;
 		isFirstLobster = false;
 	}
 
-	/*----------------------------------------------------
-	Function: removeEnemies
-	Description: Removes eels from the eel group
-	Returns: Void
-	-----------------------------------------------------*/
-	public static function removeEnemies():Void
+	public function removeEnemies():Void
 	{
-		for (i in 0... PlayState.killGroup.countLiving())
+		for (i in 0... enemies.countLiving())
 		{
-			PlayState.killGroup.remove(PlayState.killGroup.getFirstAlive());
+			enemies.remove(enemies.getFirstAlive());
 		}
 	}
 
-	/*----------------------------------------------------
-	Function: startY
-	Description: Determines where to start the level generation
-	Returns: Int
-	-----------------------------------------------------*/
-	private static function startY():Int
+    /**
+	    Description: Determines where to start the level generation
+	    Returns: Int
+    **/
+	private function startY():Int
 	{
-		if (PlayState.player.acceleration.y > 0)
+		if (player.acceleration.y > 0)
 		{
 			return Player.switchDirrectionTop + 500 + 450;
 		}
@@ -162,23 +137,18 @@ class LevelGenerator
 		return Player.switchDirrectionBottom - 500 - 450;
 	}
 
-	/*----------------------------------------------------
-	Function: reset
-	Description: Removes the current level and generates a new one
-	Returns: Void
-	-----------------------------------------------------*/
-	public static function reset():Void
+	public function reset():Void
 	{
-		LevelGenerator.removeEnemies();
-		LevelGenerator.generate();
+		removeEnemies();
+		generate();
 	}
 
-	/*----------------------------------------------------
-	Function: random
-	Description: Randomly choses what enemy to spawn and decreases the chance of getting the same one twice in a row
-	Returns: Void
-	-----------------------------------------------------*/
-	public static function random():Int
+    /**
+    	Randomly choses what enemy to spawn and decreases
+        the chance of getting the same one twice in a row.
+        Returns `Int` enemy code
+    **/
+	public function random():Int
 	{
 		if (lastSpawned == eelCode)
 		{
@@ -186,10 +156,7 @@ class LevelGenerator
 			{
 				return eelCode;
 			}
-			else
-			{
-				return lobsterCode;
-			}
+            return lobsterCode;
 		}
 		else if (lastSpawned == lobsterCode)
 		{
@@ -197,12 +164,8 @@ class LevelGenerator
 			{
 				return eelCode;
 			}
-
 			return lobsterCode;
 		}
-		else
-		{
-            return eelCode;
-		}
+        return eelCode;
 	}
 }

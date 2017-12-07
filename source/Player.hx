@@ -14,29 +14,19 @@ Author: Jaxson Van Doorn, 2014
 -----------------------------------------------------*/
 class Player extends FlxSprite
 {
-	/*----------------------------------------------------
-	Public Variables
-	-----------------------------------------------------*/
-
 	public static var startX:Float;
 	public static var startY:Float;
 	public static var switchDirrectionTop:Int = 460;
 	public static var switchDirrectionBottom:Int = 10760;
 
-	/*----------------------------------------------------
-	Private Variables
-	-----------------------------------------------------*/
-
 	private var swimmingSpeed:Int = 600;
 	private var hitTime:Int = 0;
+    private var level:LevelGenerator;
 
-	/*----------------------------------------------------
-	Function: New
-	Description: Called when the sprite is added to a state
-	Returns: Void
-	-----------------------------------------------------*/
-	public function new():Void
+    public function new(level:LevelGenerator):Void
 	{
+        this.level = level;
+
 		// Define Start Positions
 		startX = FlxG.width / 3 + 100;
 		startY = switchDirrectionTop;
@@ -46,7 +36,7 @@ class Player extends FlxSprite
 
 		// Load Spritesheet
 		this.frames = FlxAtlasFrames.fromSparrow("assets/images/sprites/player.png",
-                                               "assets/images/sprites/player.xml");
+                                                 "assets/images/sprites/player.xml");
 
 		// Create Animations
 		animation.addByPrefix("swim", "Swim", 11);
@@ -69,7 +59,7 @@ class Player extends FlxSprite
 	Description: Called 60 times a second
 	Returns: Void
 	-----------------------------------------------------*/
-  override public function update(dt:Float):Void
+    override public function update(dt:Float):Void
 	{
 		// Rest Acceleration
 		acceleration.x = 0;
@@ -101,16 +91,11 @@ class Player extends FlxSprite
 		{
 			acceleration.x = -maxVelocity.x * 18;
 		}
-
 		// Right
 		else if (MyInput.right())
 		{
 			acceleration.x = maxVelocity.x * 18;
 		}
-
-		// Still
-		else
-		{}
 
 		super.update(dt);
 	}
@@ -142,7 +127,7 @@ class Player extends FlxSprite
 
 		hitTime = 0;
 
-		LevelGenerator.reset();
+		level.reset();
 
 		PlayState.scoreValue = "0";
 		PlayState.scoreField.text = PlayState.scoreValue;
@@ -191,7 +176,7 @@ class Player extends FlxSprite
 			// Adjust Hitbox
 			hitBox();
 
-			LevelGenerator.reset();
+			level.reset();
 		}
 
 		// Go Down
@@ -207,7 +192,7 @@ class Player extends FlxSprite
 			// Adjust Hitbox
 			hitBox();
 
-			LevelGenerator.reset();
+			level.reset();
 		}
 	}
 
@@ -218,12 +203,7 @@ class Player extends FlxSprite
 	-----------------------------------------------------*/
 	public static function isGoingDown():Bool
 	{
-		if (PlayState.player.acceleration.y > 0)
-		{
-			return true;
-		}
-
-		return false;
+        return PlayState.player.acceleration.y > 0;
 	}
 
 

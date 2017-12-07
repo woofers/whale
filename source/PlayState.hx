@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxG;
 import flixel.group.FlxGroup;
+import flixel.group.FlxSpriteGroup;
 import flixel.util.FlxCollision;
 import flixel.FlxCamera;
 import flixel.FlxCamera.FlxCameraFollowStyle;
@@ -28,40 +29,17 @@ Author: Jaxson Van Doorn, 2014
 -----------------------------------------------------*/
 class PlayState extends FlxState
 {
-	/*----------------------------------------------------
-	Public Variables
-	-----------------------------------------------------*/
 
 	public static var pauseMenu:PauseMenu;
-
-	// Player
 	public static var player:Player;
-
-	// Instant Kill Group
 	public static var killGroup:flixel.group.FlxSpriteGroup;
-
-	// Score Header
 	public static  var scoreHeader:FlxSprite;
-
-	// Score
 	public static var scoreValue:String;
 	public static var scoreField:FlxBitmapText;
-
-	// Pause Button
 	public static var pauseButton:FlxButton;
-
-	/*----------------------------------------------------
-	Private Variables
-	-----------------------------------------------------*/
-
-	// Score
 	private var fontStyle:FlxBitmapFont;
+    private var level:LevelGenerator;
 
-	/*----------------------------------------------------
-	Function: Create
-	Description: Called when this state is created
-	Returns: Void
-	-----------------------------------------------------*/
 	override public function create():Void
 	{
 		super.create();
@@ -70,13 +48,14 @@ class PlayState extends FlxState
 		createText();
 
 		// Player
-		player = new Player();
+		player = new Player(level);
 		add(player);
 
 		// Group
-		killGroup = new flixel.group.FlxSpriteGroup();
-		LevelGenerator.generate();
+		killGroup = new FlxSpriteGroup();
 		add(killGroup);
+
+        level = new LevelGenerator(player, killGroup);
 
 		createPauseMenu();
 		createPauseGameButton();

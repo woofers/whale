@@ -5,35 +5,31 @@ import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 
-/*----------------------------------------------------
-Class: Eel
-Description: Moving Eel Enemy
-Condition: Tidy
-Author: Jaxson Van Doorn, 2014
------------------------------------------------------*/
+/**
+   Eeel Enemy
+   Author: Jaxson Van Doorn
+**/
 class Eel extends FlxSprite
 {
-	private var movingSpeed:Int = 13;
-	private var bool:Bool;
+	private static inline var movingSpeed:Int = 13;
+	private static inline var animationSpeed:Int = 9;
+    private static inline var detectionDistance = 1000;
+    private static inline var leftLocation = -770;
+    private static inline var rightLocation = 1177;
 
-	/*----------------------------------------------------
-	Function: New
-	Description: Called when the sprite is added to a state
-	Returns: Void
-	-----------------------------------------------------*/
-	public function new(direction, posY):Void
+    public function new(direction:Bool, y:Int):Void
 	{
 		super(0, 0);
 
 		// Set Positions
-		setPos(direction, posY);
+		setLocation(direction, y);
 
 		// Load Spritesheet
 		frames = FlxAtlasFrames.fromSparrow("assets/images/sprites/eel.png",
                                             "assets/images/sprites/eel.xml");
 
 		// Create Animations
-		animation.addByPrefix("swim", "Swim", 9);
+		animation.addByPrefix("swim", "Swim", animationSpeed);
 
 		// Max velocities on player
 		maxVelocity.set(500, 600);
@@ -42,70 +38,46 @@ class Eel extends FlxSprite
 		animation.play("swim");
 	}
 
-	/*----------------------------------------------------
-	Function: Kill
-	Description: Called when the sprite is removed from a state
-	Returns: Void
-	-----------------------------------------------------*/
 	override public function kill():Void
 	{
 		super.kill();
 	}
 
-	/*----------------------------------------------------
-	Function: Update
-	Description: Called 60 times a second
-	Returns: Void
-	-----------------------------------------------------*/
-  override public function update(dt:Float):Void
+    override public function update(dt:Float):Void
 	{
 		// Move when Player is Near
 		if (playerIsNear())
 		{
 			// Control Direction Moving
-			if (scale.x > 0)
-			{
-				acceleration.x += movingSpeed;
-			}
-			else
-			{
-				acceleration.x -= movingSpeed;
-			}
+            acceleration.x += movingSpeed * (scale.x / scale.x);
 		}
 
 		// Add To Score When Passed
 		if (Player.isGoingDown())
 		{
-			if (PlayState.player.y > y && !bool)
+			if (PlayState.player.y > y)
 			{
 				Main.setScore(10);
-				bool = true;
 			}
 		}
 		else
 		{
-			if (PlayState.player.y < y && !bool)
+			if (PlayState.player.y < y)
 			{
 				Main.setScore(10);
-				bool = true;
 			}
 		}
 
 		super.update(dt);
 	}
 
-	/*----------------------------------------------------
-	Function: setPos
-	Description: Sets position of the eels
-	Returns: Void
-	-----------------------------------------------------*/
-	public function setPos(direction, posY):Void
+	public function setLocation(direction, y):Void
 	{
 		if (direction)
 		{
 			// Set Positions
-			x = -550 - 220;
-			y = posY;
+            x = leftLocation;
+			this.y = y;
 
 			// Set Scale
 			scale.x = 1;
@@ -113,36 +85,20 @@ class Eel extends FlxSprite
 		else
 		{
 			// Set Positions
-			x = 1326 - 149;
-			y = posY;
+            x = rightLocation;
+			this.y = y;
 
 			// Set Scale
 			scale.x = -1;
 		}
 	}
 
-	/*----------------------------------------------------
-	Function: playerIsNear
-	Description: Check if the player is near enough for the eel to start moving
-	Returns: Void
-	-----------------------------------------------------*/
 	private function playerIsNear():Bool
 	{
 		if (PlayState.player.acceleration.y > 0)
 		{
-			if (PlayState.player.y + 1000 > y)
-			{
-				return true;
-			}
+            return PlayState.player.y + detectionDistance > y;
 		}
-		else
-		{
-			if (PlayState.player.y - 1000 < y)
-			{
-				return true;
-			}
-		}
-
-		return false;
+        return PlayState.player.y - detectionDistance < y;
 	}
 }
