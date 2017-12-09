@@ -12,6 +12,7 @@ import flixel.ui.FlxButton;
 import flixel.text.FlxText;
 import flixel.math.FlxMath;
 import flixel.math.FlxRandom;
+import flixel.group.FlxSpriteGroup;
 
 import flixel.text.FlxBitmapText;
 import flixel.graphics.frames.FlxBitmapFont;
@@ -30,15 +31,19 @@ Author: Jaxson Van Doorn, 2014
 class PlayState extends FlxState
 {
 
-	public static var pauseMenu:PauseMenu;
-	public static var player:Player;
-	public static var killGroup:flixel.group.FlxSpriteGroup;
-	public static  var scoreHeader:FlxSprite;
+	private var player:Player;
+    private var level:LevelGenerator;
+	private var killGroup:FlxSpriteGroup;
+
+	public static var scoreHeader:FlxSprite;
 	public static var scoreValue:String;
 	public static var scoreField:FlxBitmapText;
 	public static var pauseButton:FlxButton;
+	public static var pauseMenu:PauseMenu;
 	private var fontStyle:FlxBitmapFont;
-    private var level:LevelGenerator;
+
+    private static inline var SCREEN_WIDTH = 1080;
+    private static inline var SCREEN_HEIGHT = 11520;
 
 	override public function create():Void
 	{
@@ -47,49 +52,38 @@ class PlayState extends FlxState
 		createBackground();
 		createText();
 
-		// Player
-		player = new Player(level);
-		add(player);
-
 		// Group
 		killGroup = new FlxSpriteGroup();
 		add(killGroup);
 
-        level = new LevelGenerator(player, killGroup);
+        // Level
+        level = new LevelGenerator(killGroup);
+
+		// Player
+        player = new Player(level, killGroup);
+        level.setPlayer(player);
+        add(player);
+
+        level.generate();
 
 		createPauseMenu();
 		createPauseGameButton();
 
 		// Camera
-		FlxG.camera.setScrollBoundsRect(0, 0, 1080, 11520, true);
+		FlxG.camera.setScrollBoundsRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, true);
 		FlxG.camera.follow(player, FlxCameraFollowStyle.PLATFORMER);
 	}
 
-	/*----------------------------------------------------
-	Function: Destroy
-	Description: Called when this state is destroyed
-	Returns: Void
-	-----------------------------------------------------*/
 	override public function destroy():Void
 	{
 		super.destroy();
 	}
 
-	/*----------------------------------------------------
-	Function: Update
-	Description: Called 60 times a second
-	Returns: Void
-	-----------------------------------------------------*/
-  override public function update(dt:Float):Void
+    override public function update(dt:Float):Void
 	{
 		super.update(dt);
 	}
 
-	/*----------------------------------------------------
-	Function: createText
-	Description: Creates score text
-	Returns: Void
-	-----------------------------------------------------*/
 	private function createText():Void
 	{
 		// Score Header
@@ -117,16 +111,9 @@ class PlayState extends FlxState
 		scoreField.alignment = FlxTextAlign.CENTER;
 		scoreField.multiLine = true;
 		scoreField.wordWrap = false;
-		//scoreField._fixedWidth = false;
-
 		add(scoreField);
 	}
 
-	/*----------------------------------------------------
-	Function: createBackground
-	Description: Adds the background to the stage
-	Returns: Void
-	-----------------------------------------------------*/
 	private function createBackground():Void
 	{
 		// Background
@@ -143,11 +130,6 @@ class PlayState extends FlxState
 		pauseMenu = new PauseMenu();
 	}
 
-	/*----------------------------------------------------
-	Function: createPauseGameButton
-	Description: Creates the button to pause the game
-	Returns: Void
-	-----------------------------------------------------*/
 	private function createPauseGameButton():Void
 	{
 		pauseButton = new FlxButton(900, 20, "", pauseGame);

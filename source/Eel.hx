@@ -16,27 +16,30 @@ class Eel extends FlxSprite
     private static inline var detectionDistance = 1000;
     private static inline var leftLocation = -770;
     private static inline var rightLocation = 1177;
+    private var player:Player;
 
-    public function new(direction:Bool, y:Int):Void
-	{
-		super(0, 0);
+    public function new(player:Player, direction:Bool, y:Int):Void
+    {
+        this.player = player;
 
-		// Set Positions
-		setLocation(direction, y);
+	    super(0, 0);
 
-		// Load Spritesheet
-		frames = FlxAtlasFrames.fromSparrow("assets/images/sprites/eel.png",
+	    // Set Positions
+	    setLocation(direction, y);
+
+	    // Load Spritesheet
+	    frames = FlxAtlasFrames.fromSparrow("assets/images/sprites/eel.png",
                                             "assets/images/sprites/eel.xml");
 
-		// Create Animations
-		animation.addByPrefix("swim", "Swim", animationSpeed);
+	    // Create Animations
+	    animation.addByPrefix("swim", "Swim", animationSpeed);
 
-		// Max velocities on player
-		maxVelocity.set(500, 600);
+	    // Max velocities on player
+	    maxVelocity.set(500, 600);
 
-		// Playing Animation
-		animation.play("swim");
-	}
+	    // Playing Animation
+	    animation.play("swim");
+    }
 
 	override public function kill():Void
 	{
@@ -50,22 +53,6 @@ class Eel extends FlxSprite
 		{
 			// Control Direction Moving
             acceleration.x += movingSpeed * (scale.x / scale.x);
-		}
-
-		// Add To Score When Passed
-		if (Player.isGoingDown())
-		{
-			if (PlayState.player.y > y)
-			{
-				Main.setScore(10);
-			}
-		}
-		else
-		{
-			if (PlayState.player.y < y)
-			{
-				Main.setScore(10);
-			}
 		}
 
 		super.update(dt);
@@ -95,10 +82,10 @@ class Eel extends FlxSprite
 
 	private function playerIsNear():Bool
 	{
-		if (PlayState.player.acceleration.y > 0)
+		if (player.acceleration.y > 0)
 		{
-            return PlayState.player.y + detectionDistance > y;
+            return player.y + detectionDistance > y;
 		}
-        return PlayState.player.y - detectionDistance < y;
+        return player.y - detectionDistance < y;
 	}
 }

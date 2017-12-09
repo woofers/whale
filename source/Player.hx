@@ -5,6 +5,8 @@ import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.util.FlxCollision;
 import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.group.FlxGroup;
+import flixel.group.FlxSpriteGroup;
 
 /*----------------------------------------------------
 Class: Player
@@ -22,10 +24,12 @@ class Player extends FlxSprite
 	private var swimmingSpeed:Int = 600;
 	private var hitTime:Int = 0;
     private var level:LevelGenerator;
+    private var enemies:FlxSpriteGroup;
 
-    public function new(level:LevelGenerator):Void
+    public function new(level:LevelGenerator, enemies:FlxSpriteGroup):Void
 	{
         this.level = level;
+        this.enemies = enemies;
 
 		// Define Start Positions
 		startX = FlxG.width / 3 + 100;
@@ -108,7 +112,6 @@ class Player extends FlxSprite
 	private function hitTolerance():Void
 	{
 		hitTime ++;
-
 		if (hitTime > 24)
 		{
 			resetPlayer();
@@ -126,8 +129,7 @@ class Player extends FlxSprite
 		y = startY;
 
 		hitTime = 0;
-
-		level.reset();
+		level.reset(false);
 
 		PlayState.scoreValue = "0";
 		PlayState.scoreField.text = PlayState.scoreValue;
@@ -176,7 +178,7 @@ class Player extends FlxSprite
 			// Adjust Hitbox
 			hitBox();
 
-			level.reset();
+			level.reset(true);
 		}
 
 		// Go Down
@@ -192,7 +194,7 @@ class Player extends FlxSprite
 			// Adjust Hitbox
 			hitBox();
 
-			level.reset();
+			level.reset(false);
 		}
 	}
 
@@ -201,9 +203,9 @@ class Player extends FlxSprite
 	Description: Return whether or not the player is falling down
 	Returns: Bool
 	-----------------------------------------------------*/
-	public static function isGoingDown():Bool
+	public function isGoingDown():Bool
 	{
-        return PlayState.player.acceleration.y > 0;
+        return acceleration.y > 0;
 	}
 
 
@@ -215,9 +217,9 @@ class Player extends FlxSprite
 	private function hitDetected():Bool
 	{
 		// Colide
-		for (i in 0... PlayState.killGroup.countLiving())
+		for (i in 0... enemies.countLiving())
 		{
-			if (FlxCollision.pixelPerfectCheck(this, PlayState.killGroup.members[i]))
+			if (FlxCollision.pixelPerfectCheck(this, enemies.members[i]))
 			{
 				return true;
 			}

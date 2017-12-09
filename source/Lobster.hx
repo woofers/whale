@@ -68,24 +68,6 @@ class Lobster extends FlxSprite
 	-----------------------------------------------------*/
   override public function update(dt:Float):Void
 	{
-		// Add To Score When Passed
-		if (Player.isGoingDown())
-		{
-			if (PlayState.player.y > y && !bool)
-			{
-				Main.setScore(5);
-				bool = true;
-			}
-		}
-		else
-		{
-			if (PlayState.player.y < y && !bool)
-			{
-				Main.setScore(5);
-				bool = true;
-			}
-		}
-
 		super.update(dt);
 	}
 

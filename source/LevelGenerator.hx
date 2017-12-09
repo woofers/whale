@@ -15,36 +15,41 @@ import flixel.group.FlxSpriteGroup;
 **/
 class LevelGenerator
 {
-	private static var isFirstLobster:Bool;
-	private static var direction:Int;
+	private var isFirstLobster:Bool;
+	private var direction:Int;
     private var player:Player;
     private var enemies:FlxSpriteGroup;
 
 	// Spacing
-	private static var y:Int;
+	private var y:Int;
+    private static inline var spawnSpacing = 950;
 	private static inline var ySpacingMax:Int = 600;
 	private static inline var ySpacingMin:Int = 520;
     private static inline var spawnLimit:Int = 14;
 
 	// Character Codes
-	private static var eelCode:Int = 0;
-	private static var lobsterCode:Int = 1;
-	private static var lastSpawned:Int;	// 0 Eel || 1 Lobster
+	private var eelCode:Int = 0;
+	private var lobsterCode:Int = 1;
+	private var lastSpawned:Int;	// 0 Eel || 1 Lobster
+    private var isUp:Bool;
 
-    public function new(player:Player, enemies:FlxSpriteGroup):Void
+    public function new(enemies:FlxSpriteGroup):Void
     {
-        this.player = player;
         this.enemies = enemies;
-        generate();
     }
 
-	public function generate():Void
-	{
-		y = startY();
+    public function setPlayer(player:Player):Void
+    {
+        this.player = player;
+    }
 
+    public function generate(isUp:Bool = false):Void
+	{
+        this.isUp = isUp;
+		y = startY();
 		for (i in 0... spawnLimit)
 		{
-			if (player.acceleration.y > 0)
+			if (isUp)
 			{
 				y += FlxG.random.int(ySpacingMin, ySpacingMax);
 			}
@@ -82,7 +87,7 @@ class LevelGenerator
 	-----------------------------------------------------*/
 	public function addEel(direction, posY):Void
 	{
-        enemies.add(new Eel(direction, posY));
+        enemies.add(new Eel(player, direction, posY));
 		lastSpawned = eelCode;
 	}
 
@@ -129,18 +134,17 @@ class LevelGenerator
     **/
 	private function startY():Int
 	{
-		if (player.acceleration.y > 0)
-		{
-			return Player.switchDirrectionTop + 500 + 450;
-		}
-
-		return Player.switchDirrectionBottom - 500 - 450;
+        if (isUp)
+        {
+             return Player.switchDirrectionTop + spawnSpacing;
+        }
+        return Player.switchDirrectionBottom - spawnSpacing;
 	}
 
-	public function reset():Void
+  public function reset(isUp:Bool):Void
 	{
 		removeEnemies();
-		generate();
+		generate(isUp);
 	}
 
     /**
