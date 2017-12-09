@@ -33,13 +33,13 @@ class PlayState extends FlxState
 
 	private var player:Player;
     private var level:LevelGenerator;
-	private var enemies:FlxSpriteGroup;
+	private var enemies:FlxTypedSpriteGroup<Enemy>;
 
-	public var scoreHeader:FlxSprite;
-	public var scoreValue:Int;
-	public var scoreField:FlxBitmapText;
-	public var pauseButton:FlxButton;
-	public var pauseMenu:PauseMenu;
+	private var scoreHeader:FlxSprite;
+	private var scoreValue:Int;
+	private var scoreField:FlxBitmapText;
+	private var pauseButton:FlxButton;
+	private var pauseMenu:PauseMenu;
 	private var fontStyle:FlxBitmapFont;
 
     private static inline var SCREEN_WIDTH = 1080;
@@ -53,7 +53,7 @@ class PlayState extends FlxState
 		createText();
 
 		// Group
-		enemies = new FlxSpriteGroup();
+		enemies = new FlxTypedSpriteGroup<Enemy>();
 		add(enemies);
 
         // Level
@@ -82,12 +82,7 @@ class PlayState extends FlxState
     override public function update(dt:Float):Void
 	{
 		super.update(dt);
-	}
-
-	public function setScore(value:Int):Void
-	{
-		scoreValue += value;
-		scoreField.text = intToString(scoreValue);
+        setScore(player.score());
 	}
 
 	public function intToString(i:Int):String
@@ -176,4 +171,14 @@ class PlayState extends FlxState
         hideMenu();
 		openSubState(pauseMenu);
 	}
+
+    private function setScore(score:Int):Void
+    {
+        scoreField.text = intToString(score);
+    }
+
+    public function score():String
+    {
+        return scoreField.text;
+    }
 }

@@ -18,13 +18,13 @@ class LevelGenerator
 	private var isFirstLobster:Bool;
 	private var direction:Int;
     private var player:Player;
-    private var enemies:FlxSpriteGroup;
+    private var enemies:FlxTypedSpriteGroup<Enemy>;
 
 	// Spacing
 	private var y:Int;
     private static inline var spawnSpacing = 950;
 	private static inline var ySpacingMax:Int = 600;
-	private static inline var ySpacingMin:Int = 520;
+	private static inline var ySpacingMin:Int = 530;
     private static inline var spawnLimit:Int = 14;
 
 	private static inline var EEL:Int = 0;
@@ -33,7 +33,7 @@ class LevelGenerator
 	private var lastSpawned:Int;
     private var isUp:Bool;
 
-    public function new(enemies:FlxSpriteGroup):Void
+    public function new(enemies:FlxTypedSpriteGroup<Enemy>):Void
     {
         this.enemies = enemies;
     }
@@ -68,9 +68,17 @@ class LevelGenerator
 				// Static Lobster
 				case LOBSTER:
 					isFirstLobster = true;
-					for (i in 0... FlxG.random.int(1, 2))
+                    var max:Int = 3;
+                    var count:Int = 0;
+                    if (lastSpawned == LOBSTER) max = 2;
+					for (i in 0... max)
 					{
-						addLobster(y);
+						if (FlxG.random.bool(50) || count < 0 && i == 2)
+                        {
+                            addLobster(i, y);
+                            count ++;
+                        }
+                        if (count == 2) break;
 					}
 			}
 		}
@@ -92,25 +100,10 @@ class LevelGenerator
 	Description: Spawn and add lobster to the group
 	Returns: Void
 	-----------------------------------------------------*/
-	public function addLobster(posY):Void
+	public function addLobster(direction:Int, y:Int):Void
 	{
-		if (isFirstLobster)
-		{
-			direction = FlxG.random.int(0, 1);
-		}
-		else
-		{
-          if (direction == 0)
-          {
-              direction = 1;
-          }
-          else
-          {
-              direction = 0;
-          }
-		}
-		enemies.add(new Lobster(direction, posY));
-		lastSpawned = EEL;
+		enemies.add(new Lobster(direction, y));
+		lastSpawned = LOBSTER;
 		isFirstLobster = false;
 	}
 

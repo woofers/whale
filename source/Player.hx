@@ -24,14 +24,14 @@ class Player extends FlxSprite
 	private static inline var SWIM_SPEED:Int = 600;
     private static inline var DRAG:Int = 4;
     private static inline var ACCELERATION_X:Int = 18;
-    private static inline var HIT_TIME:Int = 14;
+    private static inline var HIT_TIME:Int = 18;
 
 	private var hitTime:Int;
     private var level:LevelGenerator;
-    private var enemies:FlxSpriteGroup;
-    private var score:Int;
+    private var enemies:FlxTypedSpriteGroup<Enemy>;
+    private var scoreValue:Int;
 
-    public function new(level:LevelGenerator, enemies:FlxSpriteGroup):Void
+    public function new(level:LevelGenerator, enemies:FlxTypedSpriteGroup<Enemy>):Void
 	{
         this.level = level;
         this.enemies = enemies;
@@ -77,6 +77,12 @@ class Player extends FlxSprite
 		// Creates Screen Bounds
 		screenBounds();
 
+        // Calculate Score
+		for (i in 0... enemies.countLiving())
+		{
+            scoreValue += enemies.group.members[i].addToScore(this);
+		}
+
 		// Hit Detection
 		if (hitDetected())
 		{
@@ -88,10 +94,11 @@ class Player extends FlxSprite
 		}
 
 		// Animation Control
-		if (acceleration.y > 0 || acceleration.y < 0)
+		if (acceleration.y != 0)
 		{
 			animation.play("swim");
 		}
+
 
 		// Left
 		if (MyInput.left())
@@ -135,6 +142,7 @@ class Player extends FlxSprite
 
 		hitTime = 0;
 		level.reset(false);
+        scoreValue = 0;
 	}
 
 	/*----------------------------------------------------
@@ -224,4 +232,9 @@ class Player extends FlxSprite
 		if (x <= 0) x = 0;
 		if (x >= 900) x = 900;
 	}
+
+    public function score():Int
+    {
+        return scoreValue;
+    }
 }

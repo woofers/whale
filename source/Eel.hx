@@ -9,7 +9,7 @@ import flixel.graphics.frames.FlxAtlasFrames;
    Eeel Enemy
    Author: Jaxson Van Doorn
 **/
-class Eel extends FlxSprite
+class Eel extends Enemy
 {
     public static inline var LEFT:Bool = true;
     public static inline var RIGHT:Bool = false;
@@ -26,7 +26,7 @@ class Eel extends FlxSprite
     {
         this.player = player;
 
-	    super(0, 0);
+	    super();
 
 	    // Set Positions
 	    setLocation(direction, y);
@@ -37,9 +37,6 @@ class Eel extends FlxSprite
 
 	    // Create Animations
 	    animation.addByPrefix("swim", "Swim", ANIMATION_SPEED);
-
-	    // Max velocities on player
-	    maxVelocity.set(500, 600);
 
 	    // Playing Animation
 	    animation.play("swim");

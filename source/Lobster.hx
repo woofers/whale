@@ -11,7 +11,7 @@ Description: Static lobster enemy
 Condition: Tidy
 Author: Jaxson Van Doorn, 2014
 -----------------------------------------------------*/
-class Lobster extends FlxSprite
+class Lobster extends Enemy
 {
     private static inline var LEFT:Int = 0;
     private static inline var RIGHT:Int = 1;
@@ -25,7 +25,7 @@ class Lobster extends FlxSprite
 
 	public function new(direction:Int, y):Void
 	{
-		super(0, 0);
+		super();
 
 		setLocation(direction, y);
 
