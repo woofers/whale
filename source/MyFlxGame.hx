@@ -3,12 +3,10 @@ package;
 import flixel.FlxGame;
 import flixel.FlxG;
 
-/*----------------------------------------------------
-Class: MyFlxGame
-Description: Classe to overide FlxGame auto pause visuals
-Condition: Tidy
-Author: Jaxson Van Doorn, 2014
------------------------------------------------------*/
+/**
+    Class to overide FlxGame auto pause visuals
+    Author: Jaxson Van Doorn
+**/
 class MyFlxGame extends FlxGame
 {
 	override private function onFocus(_):Void

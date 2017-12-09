@@ -16,27 +16,30 @@ Author: Jaxson Van Doorn, 2014
 -----------------------------------------------------*/
 class Player extends FlxSprite
 {
-	public static var startX:Float;
-	public static var startY:Float;
-	public static var switchDirrectionTop:Int = 460;
-	public static var switchDirrectionBottom:Int = 10760;
+	public static inline var switchDirrectionTop:Int = 460;
+	public static inline var switchDirrectionBottom:Int = 10760;
 
-	private var swimmingSpeed:Int = 600;
-	private var hitTime:Int = 0;
+    public static var START_LOCATION_X = FlxG.width / 3 + 100;
+    public static inline var START_LOCATION_Y = switchDirrectionTop;
+	private static inline var SWIM_SPEED:Int = 600;
+    private static inline var DRAG:Int = 4;
+    private static inline var ACCELERATION_X:Int = 18;
+    private static inline var HIT_TIME:Int = 14;
+
+	private var hitTime:Int;
     private var level:LevelGenerator;
     private var enemies:FlxSpriteGroup;
+    private var score:Int;
 
     public function new(level:LevelGenerator, enemies:FlxSpriteGroup):Void
 	{
         this.level = level;
         this.enemies = enemies;
 
-		// Define Start Positions
-		startX = FlxG.width / 3 + 100;
-		startY = switchDirrectionTop;
+        START_LOCATION_X = FlxG.width / 3 + 100;
 
 		// Set Positions
-		super(startX, startY);
+		super(START_LOCATION_X, START_LOCATION_Y);
 
 		// Load Spritesheet
 		this.frames = FlxAtlasFrames.fromSparrow("assets/images/sprites/player.png",
@@ -49,10 +52,10 @@ class Player extends FlxSprite
 		maxVelocity.set(500, 600);
 
 		// Simulate Descending or Ascending on the Player
-		acceleration.y = swimmingSpeed;
+		acceleration.y = SWIM_SPEED;
 
 		// Drag
-		drag.x = maxVelocity.x * 4;
+		drag.x = maxVelocity.x * DRAG;
 
 		// Set Hitbox For Current Dirrection
 		hitBox();
@@ -93,12 +96,12 @@ class Player extends FlxSprite
 		// Left
 		if (MyInput.left())
 		{
-			acceleration.x = -maxVelocity.x * 18;
+			acceleration.x = -maxVelocity.x * ACCELERATION_X;
 		}
 		// Right
 		else if (MyInput.right())
 		{
-			acceleration.x = maxVelocity.x * 18;
+			acceleration.x = maxVelocity.x * ACCELERATION_X;
 		}
 
 		super.update(dt);
@@ -112,7 +115,7 @@ class Player extends FlxSprite
 	private function hitTolerance():Void
 	{
 		hitTime ++;
-		if (hitTime > 24)
+		if (hitTime > HIT_TIME)
 		{
 			resetPlayer();
 		}
@@ -125,14 +128,13 @@ class Player extends FlxSprite
 	-----------------------------------------------------*/
 	private function resetPlayer():Void
 	{
-		x = startX;
-		y = startY;
+		x = START_LOCATION_X;
+		y = START_LOCATION_Y;
+		velocity.x = 0;
+		velocity.y = 0;
 
 		hitTime = 0;
 		level.reset(false);
-
-		PlayState.scoreValue = "0";
-		PlayState.scoreField.text = PlayState.scoreValue;
 	}
 
 	/*----------------------------------------------------
@@ -142,17 +144,15 @@ class Player extends FlxSprite
 	-----------------------------------------------------*/
 	private function hitBox():Void
 	{
+        width = 171;
+        height = 150;
 		if (scale.x > 0)
 		{
-			width = 171;
-			height = 150;
 			offset.x = 17;
 			offset.y = 249;
 		}
 		else
 		{
-			width = 171;
-			height = 150;
 			offset.x = 147;
 			offset.y = 122;
 		}
@@ -165,18 +165,17 @@ class Player extends FlxSprite
 	-----------------------------------------------------*/
 	private function switchDirrection():Void
 	{
+
 		// Go Up
 		if (y > switchDirrectionBottom && isGoingDown())
 		{
 			// Switchs Dirrection
-			acceleration.y = -swimmingSpeed;
+			acceleration.y = -SWIM_SPEED;
 
-			// Flip Player
-			scale.x = -scale.x;
-			scale.y = -scale.y;
-
-			// Adjust Hitbox
-			hitBox();
+            // Flip Player
+            scale.x *= -1;
+            scale.y *= -1;
+            hitBox();
 
 			level.reset(true);
 		}
@@ -185,38 +184,30 @@ class Player extends FlxSprite
 		if (y < switchDirrectionTop && !isGoingDown())
 		{
 			// Switchs Dirrection
-			acceleration.y = swimmingSpeed;
+			acceleration.y = SWIM_SPEED;
 
-			// Flip Player
-			scale.x = -scale.x;
-			scale.y = -scale.y;
-
-			// Adjust Hitbox
-			hitBox();
+            // Flip Player
+            scale.x *= -1;
+            scale.y *= -1;
+            hitBox();
 
 			level.reset(false);
 		}
 	}
 
-	/*----------------------------------------------------
-	Function: isGoingDown
-	Description: Return whether or not the player is falling down
-	Returns: Bool
-	-----------------------------------------------------*/
+    /**
+        Returns whether or not the player is falling down
+    **/
 	public function isGoingDown():Bool
 	{
         return acceleration.y > 0;
 	}
 
-
-	/*----------------------------------------------------
-	Function: hitDetected
-	Description: Handles hit detection
-	Returns: Bool
-	-----------------------------------------------------*/
+	/**
+        Handles hit detection
+    **/
 	private function hitDetected():Bool
 	{
-		// Colide
 		for (i in 0... enemies.countLiving())
 		{
 			if (FlxCollision.pixelPerfectCheck(this, enemies.members[i]))
@@ -224,15 +215,9 @@ class Player extends FlxSprite
 				return true;
 			}
 		}
-
 		return false;
 	}
 
-	/*----------------------------------------------------
-	Function: screenBounds
-	Description: Creates a invisible screen boundary for the player
-	Returns: Void
-	-----------------------------------------------------*/
 	private function screenBounds():Void
 	{
 		// Screen Bounds

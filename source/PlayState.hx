@@ -33,13 +33,13 @@ class PlayState extends FlxState
 
 	private var player:Player;
     private var level:LevelGenerator;
-	private var killGroup:FlxSpriteGroup;
+	private var enemies:FlxSpriteGroup;
 
-	public static var scoreHeader:FlxSprite;
-	public static var scoreValue:String;
-	public static var scoreField:FlxBitmapText;
-	public static var pauseButton:FlxButton;
-	public static var pauseMenu:PauseMenu;
+	public var scoreHeader:FlxSprite;
+	public var scoreValue:Int;
+	public var scoreField:FlxBitmapText;
+	public var pauseButton:FlxButton;
+	public var pauseMenu:PauseMenu;
 	private var fontStyle:FlxBitmapFont;
 
     private static inline var SCREEN_WIDTH = 1080;
@@ -53,14 +53,14 @@ class PlayState extends FlxState
 		createText();
 
 		// Group
-		killGroup = new FlxSpriteGroup();
-		add(killGroup);
+		enemies = new FlxSpriteGroup();
+		add(enemies);
 
         // Level
-        level = new LevelGenerator(killGroup);
+        level = new LevelGenerator(enemies);
 
 		// Player
-        player = new Player(level, killGroup);
+        player = new Player(level, enemies);
         level.setPlayer(player);
         add(player);
 
@@ -82,6 +82,19 @@ class PlayState extends FlxState
     override public function update(dt:Float):Void
 	{
 		super.update(dt);
+	}
+
+	public function setScore(value:Int):Void
+	{
+		scoreValue += value;
+		scoreField.text = intToString(scoreValue);
+	}
+
+	public function intToString(i:Int):String
+	{
+		var strbuf:StringBuf = new StringBuf();
+		strbuf.add(i);
+		return strbuf.toString();
 	}
 
 	private function createText():Void
@@ -125,9 +138,9 @@ class PlayState extends FlxState
 		add(new FlxSprite(0, 10240, "assets/images/background/5.png"));
 	}
 
-	public static function createPauseMenu():Void
+	public function createPauseMenu():Void
 	{
-		pauseMenu = new PauseMenu();
+		pauseMenu = new PauseMenu(this);
 	}
 
 	private function createPauseGameButton():Void
@@ -138,6 +151,20 @@ class PlayState extends FlxState
 		add(pauseButton);
 	}
 
+    private function hideMenu():Void
+    {
+		pauseButton.visible = false;
+		scoreHeader.visible = false;
+		scoreField.visible = false;
+    }
+
+    public function showMenu():Void
+    {
+		pauseButton.visible = true;
+		scoreHeader.visible = true;
+		scoreField.visible = true;
+    }
+
 	/*----------------------------------------------------
 	Function: pauseGame
 	Description: Function called by the a button to pause the game
@@ -146,10 +173,7 @@ class PlayState extends FlxState
 	private function pauseGame():Void
 	{
 		// Hide Other UI Elements
-		pauseButton.visible = false;
-		scoreHeader.visible = false;
-		scoreField.visible = false;
-
+        hideMenu();
 		openSubState(pauseMenu);
 	}
 }

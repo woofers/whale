@@ -13,36 +13,29 @@ Author: Jaxson Van Doorn, 2014
 -----------------------------------------------------*/
 class Lobster extends FlxSprite
 {
-	/*----------------------------------------------------
-	Public Variables
-	-----------------------------------------------------*/
+    private static inline var LEFT:Int = 0;
+    private static inline var RIGHT:Int = 1;
+    private static inline var MIDDLE:Int = 2;
 
-	/*----------------------------------------------------
-	Private Variables
-	-----------------------------------------------------*/
+    private static inline var LEFT_LOCATION:Int = -100;
+    private static inline var RIGHT_LOCATION:Int = 800;
+    private static inline var MIDDLE_LOCATION:Int = 350;
 
-	private static var bool:Bool;
+	private static inline var ANIMATION_SPEED:Int = 9;
 
-	/*----------------------------------------------------
-	Function: New
-	Description: Called when the sprite is added to a state
-	Returns: Void
-	-----------------------------------------------------*/
-	public function new(direction, posY):Void
+	public function new(direction:Int, y):Void
 	{
 		super(0, 0);
 
-		setPos(direction, posY);
+		setLocation(direction, y);
 
 		// Load Spritesheet
-
-
 		frames = FlxAtlasFrames.fromSparrow(
                 "assets/images/sprites/lobster.png",
                 "assets/images/sprites/lobster.xml");
 
 		// Create Animations
-		animation.addByPrefix("grab", "Grab", 9);
+		animation.addByPrefix("grab", "Grab", ANIMATION_SPEED);
 
 		// Max velocities on player
 		maxVelocity.set(500, 600);
@@ -51,41 +44,26 @@ class Lobster extends FlxSprite
 		animation.play("grab");
 	}
 
-	/*----------------------------------------------------
-	Function: Kill
-	Description: Called when the sprite is removed from a state
-	Returns: Void
-	-----------------------------------------------------*/
 	override public function kill():Void
 	{
 		super.kill();
 	}
 
-	/*----------------------------------------------------
-	Function: Update
-	Description: Called 60 times a second
-	Returns: Void
-	-----------------------------------------------------*/
-  override public function update(dt:Float):Void
+    override public function update(dt:Float):Void
 	{
 		super.update(dt);
 	}
 
-	/*----------------------------------------------------
-	Function: setPos
-	Description: Sets position of the eels
-	Returns: Void
-	-----------------------------------------------------*/
-	public function setPos(direction, posY):Void
+	public function setLocation(direction:Int, y:Int):Void
 	{
+        this.y = y;
 		switch (direction)
 		{
 			// Left
 			case 0:
 
 				// Set Positions
-				x = -100;
-				y = posY;
+				this.x = LEFT_LOCATION;
 
 				// Set Scale
 				scale.x = 1;
@@ -94,8 +72,7 @@ class Lobster extends FlxSprite
 			case 1:
 
 				// Set Positions
-				x = 800;
-				y = posY;
+				x = RIGHT_LOCATION;
 
 				// Set Scale
 				scale.x = -1;
@@ -104,8 +81,7 @@ class Lobster extends FlxSprite
 			default:
 
 				// Set Positions
-				x = 350;
-				y = posY;
+				x = MIDDLE_LOCATION;
 
 				// Set Scale
 				scale.x = 1;

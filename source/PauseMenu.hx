@@ -10,22 +10,11 @@ import flixel.text.FlxText;
 import openfl.Assets;
 import flixel.util.FlxColor;
 
-/*----------------------------------------------------
-Class: PauseMenu
-Description: Get correct input method for device
-Condition: Tidy
-Author: Jaxson Van Doorn, 2014
------------------------------------------------------*/
+/**
+    Author: Jaxson Van Doorn
+**/
 class PauseMenu extends FlxSubState
 {
-	/*----------------------------------------------------
-	Public Variables
-	-----------------------------------------------------*/
-
-	/*----------------------------------------------------
-	Private Variables
-	-----------------------------------------------------*/
-
 	// Black Overlay
 	private var darken:FlxSprite;
 
@@ -42,11 +31,15 @@ class PauseMenu extends FlxSubState
 	private var settingsButton:FlxButton;
 	private var exitButton:FlxButton;
 
-	/*----------------------------------------------------
-	Function: Create
-	Description: Called when this state is created
-	Returns: Void
-	-----------------------------------------------------*/
+    private var playState:PlayState;
+
+
+	public function new(playState:PlayState):Void
+    {
+        super();
+        this.playState = playState;
+    }
+
 	override public function create():Void
 	{
 		super.create();
@@ -65,11 +58,13 @@ class PauseMenu extends FlxSubState
 		add(scoreHeader);
 
 		// Font Style
-		fontStyle = FlxBitmapFont.fromAngelCode(Assets.getBitmapData("assets/font/font.png"), Xml.parse(Assets.getText("assets/font/font.fnt")));
+		fontStyle = FlxBitmapFont.fromAngelCode(
+                        Assets.getBitmapData("assets/font/font.png"),
+                        Xml.parse(Assets.getText("assets/font/font.fnt")));
 
 		// Score
 		scoreField = new FlxBitmapText(fontStyle);
-		scoreField.text = PlayState.scoreValue;
+		scoreField.text = playState.scoreField.text;
 		scoreField.scrollFactor.x = scoreField.scrollFactor.y = 0;
 		scoreField.useTextColor = false;
 		scoreField.color = 0xffEE4D4D;
@@ -95,29 +90,20 @@ class PauseMenu extends FlxSubState
 		add(exitButton);
 	}
 
-	/*----------------------------------------------------
-	Function: Update
-	Description: Called 60 times a second
-	Returns: Void
-	-----------------------------------------------------*/
     override public function update(dt:Float):Void
 	{
 		super.update(dt);
 	}
 
-	/*----------------------------------------------------
-	Function: resumeGame
-	Description: Exits the pause menu state
-	Returns: Void
-	-----------------------------------------------------*/
+    /**
+        Exits the pause menu state
+    **/
 	private function resumeGame():Void
 	{
 		close();
-		PlayState.createPauseMenu();
+		playState.createPauseMenu();
 
 		// Show Hidden UI Elements
-		PlayState.pauseButton.visible = true;
-		PlayState.scoreHeader.visible = true;
-		PlayState.scoreField.visible = true;
+        playState.showMenu();
 	}
 }

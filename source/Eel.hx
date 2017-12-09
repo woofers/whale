@@ -11,11 +11,15 @@ import flixel.graphics.frames.FlxAtlasFrames;
 **/
 class Eel extends FlxSprite
 {
-	private static inline var movingSpeed:Int = 13;
-	private static inline var animationSpeed:Int = 9;
-    private static inline var detectionDistance = 1000;
-    private static inline var leftLocation = -770;
-    private static inline var rightLocation = 1177;
+    public static inline var LEFT:Bool = true;
+    public static inline var RIGHT:Bool = false;
+
+	private static inline var MOVING_SPEED:Int = 13;
+	private static inline var ANIMATION_SPEED:Int = 9;
+    private static inline var DETECTION_DISTANCE = 1000;
+    private static inline var LEFT_LOCATION = -770;
+    private static inline var RIGHT_LOCATION = 1177;
+
     private var player:Player;
 
     public function new(player:Player, direction:Bool, y:Int):Void
@@ -32,7 +36,7 @@ class Eel extends FlxSprite
                                             "assets/images/sprites/eel.xml");
 
 	    // Create Animations
-	    animation.addByPrefix("swim", "Swim", animationSpeed);
+	    animation.addByPrefix("swim", "Swim", ANIMATION_SPEED);
 
 	    // Max velocities on player
 	    maxVelocity.set(500, 600);
@@ -51,20 +55,26 @@ class Eel extends FlxSprite
 		// Move when Player is Near
 		if (playerIsNear())
 		{
-			// Control Direction Moving
-            acceleration.x += movingSpeed * (scale.x / scale.x);
+            // Control Direction Moving
+            if (scale.x > 0)
+            {
+                acceleration.x += MOVING_SPEED;
+            }
+            else
+            {
+                acceleration.x -= MOVING_SPEED;
+            }
 		}
-
 		super.update(dt);
 	}
 
-	public function setLocation(direction, y):Void
+	public function setLocation(direction:Bool, y:Int):Void
 	{
+        this.y = y;
 		if (direction)
 		{
 			// Set Positions
-            x = leftLocation;
-			this.y = y;
+            x = LEFT_LOCATION;
 
 			// Set Scale
 			scale.x = 1;
@@ -72,8 +82,7 @@ class Eel extends FlxSprite
 		else
 		{
 			// Set Positions
-            x = rightLocation;
-			this.y = y;
+            x = RIGHT_LOCATION;
 
 			// Set Scale
 			scale.x = -1;
@@ -84,8 +93,8 @@ class Eel extends FlxSprite
 	{
 		if (player.acceleration.y > 0)
 		{
-            return player.y + detectionDistance > y;
+            return player.y + DETECTION_DISTANCE > y;
 		}
-        return player.y - detectionDistance < y;
+        return player.y - DETECTION_DISTANCE < y;
 	}
 }

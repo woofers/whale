@@ -3,29 +3,14 @@ package;
 import flixel.FlxG;
 import flixel.math.FlxMath;
 
-/*----------------------------------------------------
-Class: MyInput
-Description: Get correct input method for device
-Condition: Tidy
-Author: Jaxson Van Doorn, 2014
------------------------------------------------------*/
+/**
+     Class to get correct input method for device
+     Author: Jaxson Van Doorn
+**/
 class MyInput
 {
-	/*----------------------------------------------------
-	Public Variables
-	-----------------------------------------------------*/
-
-	/*----------------------------------------------------
-	Private Variables
-	-----------------------------------------------------*/
-
 	private static var accelerometerSensitivity:Float = 0.4;
 
-	/*----------------------------------------------------
-	Function: Left
-	Description: Keybinding for moving left
-	Returns: Bool
-	-----------------------------------------------------*/
 	public static function left():Bool
 	{
 		#if !FLX_NO_KEYBOARD
@@ -47,11 +32,6 @@ class MyInput
 		return false;
 	}
 
-	/*----------------------------------------------------
-	Function: Right
-	Description: Keybinding for moving right
-	Returns: Bool
-	-----------------------------------------------------*/
 	public static function right():Bool
 	{
 		#if !FLX_NO_KEYBOARD
@@ -73,18 +53,17 @@ class MyInput
 		return false;
 	}
 
-	/*----------------------------------------------------
-	Function: getAccelerometerX
-	Description: Gets x value of the accelerometer & converts it to an interger
-	Returns: Int
-	-----------------------------------------------------*/
-	private static function getAccelerometerX()
+    /**
+        Gets `x` value of the accelerometer and converts it to an int
+    **/
+	private static function getAccelerometerX():Int
 	{
 		#if mobile
 
-			var ax = (FlxMath.roundDecimal(FlxG.accelerometer.x, 2) * 10);
-			return ax;
+			return FlxMath.roundDecimal(FlxG.accelerometer.x, 2) * 10);
 
 		#end
+
+        return 0;
 	}
 }
