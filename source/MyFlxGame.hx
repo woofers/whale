@@ -9,71 +9,71 @@ import flixel.FlxG;
 **/
 class MyFlxGame extends FlxGame
 {
-	override private function onFocus(_):Void
-	{
-		#if flash
-		if (!_lostFocus)
-		{
-			return;
-		}
-		#end
+    override private function onFocus(_):Void
+    {
+        #if flash
+        if (!_lostFocus)
+        {
+            return;
+        }
+        #end
 
-		#if desktop
+        #if desktop
 
-		if (!_onFocusFiredOnce)
-		{
-			_onFocusFiredOnce = true;
-			return;
-		}
-		#end
+        if (!_onFocusFiredOnce)
+        {
+            _onFocusFiredOnce = true;
+            return;
+        }
+        #end
 
-		_lostFocus = false;
-		FlxG.signals.focusGained.dispatch();
+        _lostFocus = false;
+        FlxG.signals.focusGained.dispatch();
 
-		if (!FlxG.autoPause)
-		{
-			_state.onFocus();
-			return;
-		}
+        if (!FlxG.autoPause)
+        {
+            _state.onFocus();
+            return;
+        }
 
-		#if !FLX_NO_DEBUG
-		debugger.stats.onFocus();
-		#end
+        #if !FLX_NO_DEBUG
+        debugger.stats.onFocus();
+        #end
 
-		stage.frameRate = FlxG.drawFramerate;
-		#if !FLX_NO_SOUND_SYSTEM
-		FlxG.sound.onFocus();
-		#end
-		FlxG.inputs.onFocus();
-	}
+        stage.frameRate = FlxG.drawFramerate;
+        #if !FLX_NO_SOUND_SYSTEM
+        FlxG.sound.onFocus();
+        #end
+        FlxG.inputs.onFocus();
+    }
 
-	override private function onFocusLost(_):Void
-	{
-		#if flash
-		if (_lostFocus)
-		{
-			return;
-		}
-		#end
+    override private function onFocusLost(_):Void
+    {
+        #if flash
+        if (_lostFocus)
+        {
+            return;
+        }
+        #end
 
-		_lostFocus = true;
+        _lostFocus = true;
 
-		FlxG.signals.focusLost.dispatch();
+        FlxG.signals.focusLost.dispatch();
 
-		if (!FlxG.autoPause)
-		{
-			_state.onFocusLost();
-			return;
-		}
+        if (!FlxG.autoPause)
+        {
+            _state.onFocusLost();
+            return;
+        }
 
-		#if !FLX_NO_DEBUG
-		debugger.stats.onFocusLost();
-		#end
+        #if !FLX_NO_DEBUG
+        debugger.stats.onFocusLost();
+        #end
 
-		stage.frameRate = focusLostFramerate;
-		#if !FLX_NO_SOUND_SYSTEM
-		FlxG.sound.onFocusLost();
-		#end
-		FlxG.inputs.onFocusLost();
-	}
+        stage.frameRate = focusLostFramerate;
+        #if !FLX_NO_SOUND_SYSTEM
+        FlxG.sound.onFocusLost();
+        #end
+        FlxG.inputs.onFocusLost();
+    }
 }

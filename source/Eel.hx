@@ -14,8 +14,8 @@ class Eel extends Enemy
     public static inline var LEFT:Bool = true;
     public static inline var RIGHT:Bool = false;
 
-	private static inline var MOVING_SPEED:Int = 13;
-	private static inline var ANIMATION_SPEED:Int = 9;
+    private static inline var MOVING_SPEED:Int = 13;
+    private static inline var ANIMATION_SPEED:Int = 9;
     private static inline var DETECTION_DISTANCE = 1000;
     private static inline var LEFT_LOCATION = -770;
     private static inline var RIGHT_LOCATION = 1177;
@@ -26,32 +26,32 @@ class Eel extends Enemy
     {
         this.player = player;
 
-	    super();
+        super();
 
-	    // Set Positions
-	    setLocation(direction, y);
+        // Set Positions
+        setLocation(direction, y);
 
-	    // Load Spritesheet
-	    frames = FlxAtlasFrames.fromSparrow("assets/images/sprites/eel.png",
+        // Load Spritesheet
+        frames = FlxAtlasFrames.fromSparrow("assets/images/sprites/eel.png",
                                             "assets/images/sprites/eel.xml");
 
-	    // Create Animations
-	    animation.addByPrefix("swim", "Swim", ANIMATION_SPEED);
+        // Create Animations
+        animation.addByPrefix("swim", "Swim", ANIMATION_SPEED);
 
-	    // Playing Animation
-	    animation.play("swim");
+        // Playing Animation
+        animation.play("swim");
     }
 
-	override public function kill():Void
-	{
-		super.kill();
-	}
+    override public function kill():Void
+    {
+        super.kill();
+    }
 
     override public function update(dt:Float):Void
-	{
-		// Move when Player is Near
-		if (playerIsNear())
-		{
+    {
+        // Move when Player is Near
+        if (playerIsNear())
+        {
             // Control Direction Moving
             if (scale.x > 0)
             {
@@ -61,37 +61,37 @@ class Eel extends Enemy
             {
                 acceleration.x -= MOVING_SPEED;
             }
-		}
-		super.update(dt);
-	}
+        }
+        super.update(dt);
+    }
 
-	public function setLocation(direction:Bool, y:Int):Void
-	{
+    public function setLocation(direction:Bool, y:Int):Void
+    {
         this.y = y;
-		if (direction)
-		{
-			// Set Positions
+        if (direction)
+        {
+            // Set Positions
             x = LEFT_LOCATION;
 
-			// Set Scale
-			scale.x = 1;
-		}
-		else
-		{
-			// Set Positions
+            // Set Scale
+            scale.x = 1;
+        }
+        else
+        {
+            // Set Positions
             x = RIGHT_LOCATION;
 
-			// Set Scale
-			scale.x = -1;
-		}
-	}
+            // Set Scale
+            scale.x = -1;
+        }
+    }
 
-	private function playerIsNear():Bool
-	{
-		if (player.acceleration.y > 0)
-		{
+    private function playerIsNear():Bool
+    {
+        if (player.acceleration.y > 0)
+        {
             return player.y + DETECTION_DISTANCE > y;
-		}
+        }
         return player.y - DETECTION_DISTANCE < y;
-	}
+    }
 }

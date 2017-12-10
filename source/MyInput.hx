@@ -9,61 +9,61 @@ import flixel.math.FlxMath;
 **/
 class MyInput
 {
-	private static var accelerometerSensitivity:Float = 0.4;
+    private static var accelerometerSensitivity:Float = 0.4;
 
-	public static function left():Bool
-	{
-		#if !FLX_NO_KEYBOARD
+    public static function left():Bool
+    {
+        #if !FLX_NO_KEYBOARD
 
-			if (FlxG.keys.anyPressed(["LEFT", "A"]))
-			{
-				return true;
-			}
+            if (FlxG.keys.anyPressed(["LEFT", "A"]))
+            {
+                return true;
+            }
 
-		#elseif !FLX_NO_TOUCH
+        #elseif !FLX_NO_TOUCH
 
-			if (getAccelerometerX() >= accelerometerSensitivity)
-			{
-				return true;
-			}
+            if (getAccelerometerX() >= accelerometerSensitivity)
+            {
+                return true;
+            }
 
-		#end
+        #end
 
-		return false;
-	}
+        return false;
+    }
 
-	public static function right():Bool
-	{
-		#if !FLX_NO_KEYBOARD
+    public static function right():Bool
+    {
+        #if !FLX_NO_KEYBOARD
 
-			if (FlxG.keys.anyPressed(["RIGHT", "D"]))
-			{
-				return true;
-			}
+            if (FlxG.keys.anyPressed(["RIGHT", "D"]))
+            {
+                return true;
+            }
 
-		#elseif !FLX_NO_TOUCH
+        #elseif !FLX_NO_TOUCH
 
-			if (getAccelerometerX() <= accelerometerSensitivity)
-			{
-				return true;
-			}
+            if (getAccelerometerX() <= accelerometerSensitivity)
+            {
+                return true;
+            }
 
-		#end
+        #end
 
-		return false;
-	}
+        return false;
+    }
 
     /**
         Gets `x` value of the accelerometer and converts it to an int
     **/
-	private static function getAccelerometerX():Int
-	{
-		#if mobile
+    private static function getAccelerometerX():Int
+    {
+        #if mobile
 
-			return FlxMath.roundDecimal(FlxG.accelerometer.x, 2) * 10);
+            return FlxMath.roundDecimal(FlxG.accelerometer.x, 2) * 10);
 
-		#end
+        #end
 
         return 0;
-	}
+    }
 }

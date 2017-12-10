@@ -31,146 +31,146 @@ Author: Jaxson Van Doorn, 2014
 class PlayState extends FlxState
 {
 
-	private var player:Player;
+    private var player:Player;
     private var level:LevelGenerator;
-	private var enemies:FlxTypedSpriteGroup<Enemy>;
+    private var enemies:FlxTypedSpriteGroup<Enemy>;
 
-	private var scoreHeader:FlxSprite;
-	private var scoreValue:Int;
-	private var scoreField:FlxBitmapText;
-	private var pauseButton:FlxButton;
-	private var pauseMenu:PauseMenu;
-	private var fontStyle:FlxBitmapFont;
+    private var scoreHeader:FlxSprite;
+    private var scoreValue:Int;
+    private var scoreField:FlxBitmapText;
+    private var pauseButton:FlxButton;
+    private var pauseMenu:PauseMenu;
+    private var fontStyle:FlxBitmapFont;
 
     private static inline var SCREEN_WIDTH = 1080;
     private static inline var SCREEN_HEIGHT = 11520;
 
-	override public function create():Void
-	{
-		super.create();
+    override public function create():Void
+    {
+        super.create();
 
-		createBackground();
-		createText();
+        createBackground();
+        createText();
 
-		// Group
-		enemies = new FlxTypedSpriteGroup<Enemy>();
-		add(enemies);
+        // Group
+        enemies = new FlxTypedSpriteGroup<Enemy>();
+        add(enemies);
 
         // Level
         level = new LevelGenerator(enemies);
 
-		// Player
+        // Player
         player = new Player(level, enemies);
         level.setPlayer(player);
         add(player);
 
         level.generate();
 
-		createPauseMenu();
-		createPauseGameButton();
+        createPauseMenu();
+        createPauseGameButton();
 
-		// Camera
-		FlxG.camera.setScrollBoundsRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, true);
-		FlxG.camera.follow(player, FlxCameraFollowStyle.PLATFORMER);
-	}
+        // Camera
+        FlxG.camera.setScrollBoundsRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, true);
+        FlxG.camera.follow(player, FlxCameraFollowStyle.PLATFORMER);
+    }
 
-	override public function destroy():Void
-	{
-		super.destroy();
-	}
+    override public function destroy():Void
+    {
+        super.destroy();
+    }
 
     override public function update(dt:Float):Void
-	{
-		super.update(dt);
+    {
+        super.update(dt);
         setScore(player.score());
-	}
+    }
 
-	public function intToString(i:Int):String
-	{
-		var strbuf:StringBuf = new StringBuf();
-		strbuf.add(i);
-		return strbuf.toString();
-	}
+    public function intToString(i:Int):String
+    {
+        var strbuf:StringBuf = new StringBuf();
+        strbuf.add(i);
+        return strbuf.toString();
+    }
 
-	private function createText():Void
-	{
-		// Score Header
-		scoreHeader = new FlxSprite(40, 40, "assets/images/ui/pause/score.png");
-		scoreHeader.scrollFactor.x = scoreHeader.scrollFactor.y = 0;
-		scoreHeader.origin.x = scoreHeader.origin.y = 0;
-		scoreHeader.scale.x = scoreHeader.scale.y = 0.2;
-		add(scoreHeader);
+    private function createText():Void
+    {
+        // Score Header
+        scoreHeader = new FlxSprite(40, 40, "assets/images/ui/pause/score.png");
+        scoreHeader.scrollFactor.x = scoreHeader.scrollFactor.y = 0;
+        scoreHeader.origin.x = scoreHeader.origin.y = 0;
+        scoreHeader.scale.x = scoreHeader.scale.y = 0.2;
+        add(scoreHeader);
 
-		// Font Style
-		fontStyle = FlxBitmapFont.fromAngelCode(
+        // Font Style
+        fontStyle = FlxBitmapFont.fromAngelCode(
                 Assets.getBitmapData(
                      "assets/font/font.png"),
                      Xml.parse(Assets.getText("assets/font/font.fnt")));
 
-		// Score
-		scoreField = new FlxBitmapText(fontStyle);
-		scoreField.scrollFactor.x = scoreField.scrollFactor.y = 0;
-		scoreField.text = "0";
-		scoreField.useTextColor = false;
-		scoreField.color = 0xffEE4D4D;
-		scoreField.x = 45;
-		scoreField.y = 80;
+        // Score
+        scoreField = new FlxBitmapText(fontStyle);
+        scoreField.scrollFactor.x = scoreField.scrollFactor.y = 0;
+        scoreField.text = "0";
+        scoreField.useTextColor = false;
+        scoreField.color = 0xffEE4D4D;
+        scoreField.x = 45;
+        scoreField.y = 80;
 
-		scoreField.alignment = FlxTextAlign.CENTER;
-		scoreField.multiLine = true;
-		scoreField.wordWrap = false;
-		add(scoreField);
-	}
+        scoreField.alignment = FlxTextAlign.CENTER;
+        scoreField.multiLine = true;
+        scoreField.wordWrap = false;
+        add(scoreField);
+    }
 
-	private function createBackground():Void
-	{
-		// Background
-		add(new FlxSprite(0, 0, "assets/images/background/0.png"));
-		add(new FlxSprite(0, 2048, "assets/images/background/1.png"));
-		add(new FlxSprite(0, 4096, "assets/images/background/2.png"));
-		add(new FlxSprite(0, 6144, "assets/images/background/3.png"));
-		add(new FlxSprite(0, 8192, "assets/images/background/4.png"));
-		add(new FlxSprite(0, 10240, "assets/images/background/5.png"));
-	}
+    private function createBackground():Void
+    {
+        // Background
+        add(new FlxSprite(0, 0, "assets/images/background/0.png"));
+        add(new FlxSprite(0, 2048, "assets/images/background/1.png"));
+        add(new FlxSprite(0, 4096, "assets/images/background/2.png"));
+        add(new FlxSprite(0, 6144, "assets/images/background/3.png"));
+        add(new FlxSprite(0, 8192, "assets/images/background/4.png"));
+        add(new FlxSprite(0, 10240, "assets/images/background/5.png"));
+    }
 
-	public function createPauseMenu():Void
-	{
-		pauseMenu = new PauseMenu(this);
-	}
+    public function createPauseMenu():Void
+    {
+        pauseMenu = new PauseMenu(this);
+    }
 
-	private function createPauseGameButton():Void
-	{
-		pauseButton = new FlxButton(900, 20, "", pauseGame);
-		pauseButton.loadGraphic("assets/images/ui/pause/pause.png");
-		pauseButton.scrollFactor.x = pauseButton.scrollFactor.y = 0;
-		add(pauseButton);
-	}
+    private function createPauseGameButton():Void
+    {
+        pauseButton = new FlxButton(900, 20, "", pauseGame);
+        pauseButton.loadGraphic("assets/images/ui/pause/pause.png");
+        pauseButton.scrollFactor.x = pauseButton.scrollFactor.y = 0;
+        add(pauseButton);
+    }
 
     private function hideMenu():Void
     {
-		pauseButton.visible = false;
-		scoreHeader.visible = false;
-		scoreField.visible = false;
+        pauseButton.visible = false;
+        scoreHeader.visible = false;
+        scoreField.visible = false;
     }
 
     public function showMenu():Void
     {
-		pauseButton.visible = true;
-		scoreHeader.visible = true;
-		scoreField.visible = true;
+        pauseButton.visible = true;
+        scoreHeader.visible = true;
+        scoreField.visible = true;
     }
 
-	/*----------------------------------------------------
-	Function: pauseGame
-	Description: Function called by the a button to pause the game
-	Returns: Void
-	-----------------------------------------------------*/
-	private function pauseGame():Void
-	{
-		// Hide Other UI Elements
+    /*----------------------------------------------------
+    Function: pauseGame
+    Description: Function called by the a button to pause the game
+    Returns: Void
+    -----------------------------------------------------*/
+    private function pauseGame():Void
+    {
+        // Hide Other UI Elements
         hideMenu();
-		openSubState(pauseMenu);
-	}
+        openSubState(pauseMenu);
+    }
 
     private function setScore(score:Int):Void
     {

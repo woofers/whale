@@ -21,70 +21,70 @@ class Lobster extends Enemy
     private static inline var RIGHT_LOCATION:Int = 800;
     private static inline var MIDDLE_LOCATION:Int = 350;
 
-	private static inline var ANIMATION_SPEED:Int = 9;
+    private static inline var ANIMATION_SPEED:Int = 9;
 
-	public function new(direction:Int, y):Void
-	{
-		super();
+    public function new(direction:Int, y):Void
+    {
+        super();
 
-		setLocation(direction, y);
+        setLocation(direction, y);
 
-		// Load Spritesheet
-		frames = FlxAtlasFrames.fromSparrow(
+        // Load Spritesheet
+        frames = FlxAtlasFrames.fromSparrow(
                 "assets/images/sprites/lobster.png",
                 "assets/images/sprites/lobster.xml");
 
-		// Create Animations
-		animation.addByPrefix("grab", "Grab", ANIMATION_SPEED);
+        // Create Animations
+        animation.addByPrefix("grab", "Grab", ANIMATION_SPEED);
 
-		// Max velocities on player
-		maxVelocity.set(500, 600);
+        // Max velocities on player
+        maxVelocity.set(500, 600);
 
-		// Playing Animation
-		animation.play("grab");
-	}
+        // Playing Animation
+        animation.play("grab");
+    }
 
-	override public function kill():Void
-	{
-		super.kill();
-	}
+    override public function kill():Void
+    {
+        super.kill();
+    }
 
     override public function update(dt:Float):Void
-	{
-		super.update(dt);
-	}
+    {
+        super.update(dt);
+    }
 
-	public function setLocation(direction:Int, y:Int):Void
-	{
+    public function setLocation(direction:Int, y:Int):Void
+    {
         this.y = y;
-		switch (direction)
-		{
-			// Left
-			case 0:
+        switch (direction)
+        {
+            // Left
+            case 0:
 
-				// Set Positions
-				this.x = LEFT_LOCATION;
+                // Set Positions
+                this.x = LEFT_LOCATION;
 
-				// Set Scale
-				scale.x = 1;
+                // Set Scale
+                scale.x = 1;
 
-			// Right
-			case 1:
+            // Right
+            case 1:
 
-				// Set Positions
-				x = RIGHT_LOCATION;
+                // Set Positions
+                x = RIGHT_LOCATION;
 
-				// Set Scale
-				scale.x = -1;
+                // Set Scale
+                scale.x = -1;
 
-			// Middle
-			default:
+            // Middle
+            default:
 
-				// Set Positions
-				x = MIDDLE_LOCATION;
+                // Set Positions
+                x = MIDDLE_LOCATION;
 
-				// Set Scale
-				scale.x = 1;
-		}
-	}
+                // Set Scale
+                scale.x = 1;
+        }
+    }
 }
