@@ -15,7 +15,6 @@ import flixel.group.FlxSpriteGroup;
 **/
 class LevelGenerator
 {
-    private var isFirstLobster:Bool;
     private var direction:Int;
     private var player:Player;
     private var enemies:FlxTypedSpriteGroup<Enemy>;
@@ -24,13 +23,14 @@ class LevelGenerator
     private var y:Int;
     private static inline var spawnSpacing = 950;
     private static inline var ySpacingMax:Int = 600;
-    private static inline var ySpacingMin:Int = 530;
+    private static inline var ySpacingMin:Int = 550;
     private static inline var spawnLimit:Int = 14;
 
     private static inline var EEL:Int = 0;
     private static inline var LOBSTER:Int = 1;
 
     private var lastSpawned:Int;
+    private var lastDirection:Int;
     private var isUp:Bool;
 
     public function new(enemies:FlxTypedSpriteGroup<Enemy>):Void
@@ -67,12 +67,12 @@ class LevelGenerator
 
                 // Static Lobster
                 case LOBSTER:
-                    isFirstLobster = true;
                     var max:Int = 3;
                     var count:Int = 0;
                     if (lastSpawned == LOBSTER) max = 2;
                     for (i in 0... max)
                     {
+                        if (lastDirection == i) continue;
                         if (FlxG.random.bool(50) || count < 0 && i == 2)
                         {
                             addLobster(i, y);
@@ -93,6 +93,8 @@ class LevelGenerator
     {
         enemies.add(new Eel(player, direction, posY));
         lastSpawned = EEL;
+        lastDirection = 0;
+        if (direction) lastDirection = 1;
     }
 
     /*----------------------------------------------------
@@ -104,7 +106,7 @@ class LevelGenerator
     {
         enemies.add(new Lobster(direction, y));
         lastSpawned = LOBSTER;
-        isFirstLobster = false;
+        lastDirection = direction;
     }
 
     public function removeEnemies():Void

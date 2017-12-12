@@ -14,11 +14,12 @@ class Eel extends Enemy
     public static inline var LEFT:Bool = true;
     public static inline var RIGHT:Bool = false;
 
-    private static inline var MOVING_SPEED:Int = 13;
+    private static inline var MOVING_SPEED:Int = 12;
     private static inline var ANIMATION_SPEED:Int = 9;
-    private static inline var DETECTION_DISTANCE = 1000;
-    private static inline var LEFT_LOCATION = -770;
-    private static inline var RIGHT_LOCATION = 1177;
+    private static inline var DETECTION_DISTANCE:Int = 1000;
+    private static inline var LEFT_LOCATION:Int = -770;
+    private static inline var RIGHT_LOCATION:Int = 1177;
+    private static inline var SCORE = 15;
 
     private var player:Player;
 
@@ -40,6 +41,7 @@ class Eel extends Enemy
 
         // Playing Animation
         animation.play("swim");
+        setScore(SCORE);
     }
 
     override public function kill():Void

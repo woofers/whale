@@ -23,8 +23,8 @@ class Player extends FlxSprite
     public static inline var START_LOCATION_Y = switchDirrectionTop;
     private static inline var SWIM_SPEED:Int = 600;
     private static inline var DRAG:Int = 4;
-    private static inline var ACCELERATION_X:Int = 18;
-    private static inline var HIT_TIME:Int = 18;
+    private static inline var ACCELERATION_X:Int = 21;
+    private static inline var HIT_TIME:Int = 1200;
 
     private var hitTime:Int;
     private var level:LevelGenerator;
@@ -86,7 +86,7 @@ class Player extends FlxSprite
         // Hit Detection
         if (hitDetected())
         {
-            hitTolerance();
+            hitTolerance(dt);
         }
         else
         {
@@ -119,10 +119,10 @@ class Player extends FlxSprite
     Description: Makes sure the player is in contact with the enemy for a more than 0.01 of a second
     Returns: Void
     -----------------------------------------------------*/
-    private function hitTolerance():Void
+    private function hitTolerance(dt:Float):Void
     {
         hitTime ++;
-        if (hitTime > HIT_TIME)
+        if (hitTime > HIT_TIME * dt)
         {
             resetPlayer();
         }

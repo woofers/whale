@@ -28,11 +28,10 @@ class Enemy extends FlxSprite
         super.update(dt);
     }
 
-    public function setScoreValue(score:Int):Void
+    public function setScore(score:Int):Void
     {
         this.scoreValue = score;
     }
-
 
     public function score():Int
     {
