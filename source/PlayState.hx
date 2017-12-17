@@ -22,17 +22,15 @@ import flixel.util.FlxColor;
 import flixel.FlxSubState;
 import flixel.ui.FlxButton;
 
-/*----------------------------------------------------
-Class: PlayState
-Description: State when the user is playing the game
-Condition: Ok
-Author: Jaxson Van Doorn, 2014
------------------------------------------------------*/
+/**
+    State when the user is playing the game
+    Author: Jaxson Van Doorn
+**/
 class PlayState extends FlxState
 {
 
     private var player:Player;
-    private var level:LevelGenerator;
+    private var level:Level;
     private var enemies:FlxTypedSpriteGroup<Enemy>;
 
     private var scoreHeader:FlxSprite;
@@ -57,20 +55,22 @@ class PlayState extends FlxState
         add(enemies);
 
         // Level
-        level = new LevelGenerator(enemies);
+        level = new Level(enemies);
 
         // Player
         player = new Player(level, enemies);
         level.setPlayer(player);
         add(player);
 
+        // Create Level
         level.generate();
 
+        // Create UI
         createPauseMenu();
         createPauseGameButton();
 
         // Camera
-        FlxG.camera.setScrollBoundsRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, true);
+        FlxG.camera.setScrollBoundsRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, false);
         FlxG.camera.follow(player, FlxCameraFollowStyle.PLATFORMER);
     }
 
@@ -160,11 +160,9 @@ class PlayState extends FlxState
         scoreField.visible = true;
     }
 
-    /*----------------------------------------------------
-    Function: pauseGame
-    Description: Function called by the a button to pause the game
-    Returns: Void
-    -----------------------------------------------------*/
+    /**
+        Function called by the pause button pause the game
+    **/
     private function pauseGame():Void
     {
         // Hide Other UI Elements

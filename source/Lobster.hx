@@ -13,9 +13,9 @@ Author: Jaxson Van Doorn, 2014
 -----------------------------------------------------*/
 class Lobster extends Enemy
 {
-    private static inline var LEFT:Int = 0;
-    private static inline var RIGHT:Int = 1;
-    private static inline var MIDDLE:Int = 2;
+    public static inline var LEFT:Int = 0;
+    public static inline var RIGHT:Int = 1;
+    public static inline var MIDDLE:Int = 2;
 
     private static inline var LEFT_LOCATION:Int = -100;
     private static inline var RIGHT_LOCATION:Int = 800;
@@ -25,9 +25,11 @@ class Lobster extends Enemy
 
     public function new(direction:Int, y):Void
     {
-        super();
+        // Set Direction
+        super(direction);
 
-        setLocation(direction, y);
+        // Set Location
+        setLocation(y);
 
         // Load Spritesheet
         frames = FlxAtlasFrames.fromSparrow(
@@ -54,10 +56,10 @@ class Lobster extends Enemy
         super.update(dt);
     }
 
-    public function setLocation(direction:Int, y:Int):Void
+    public function setLocation(y:Int):Void
     {
         this.y = y;
-        switch (direction)
+        switch (getDirection())
         {
             // Left
             case 0:

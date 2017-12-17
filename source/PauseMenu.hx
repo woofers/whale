@@ -31,6 +31,7 @@ class PauseMenu extends FlxSubState
     private var settingsButton:FlxButton;
     private var exitButton:FlxButton;
 
+    // PlayState
     private var playState:PlayState;
 
 

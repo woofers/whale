@@ -9,13 +9,21 @@ class Enemy extends FlxSprite
 {
     private var addedToScore:Bool;
     private var scoreValue:Int = 10;
+    private var direction:Int;
 
-    public function new():Void
+    public function new(direction:Int):Void
     {
         super(0, 0);
 
+        this.direction = direction;
+
         // Max velocities on player
         maxVelocity.set(500, 600);
+    }
+
+    public function getDirection():Int
+    {
+        return direction;
     }
 
     override public function kill():Void

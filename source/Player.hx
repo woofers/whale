@@ -8,30 +8,28 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup;
 import flixel.group.FlxSpriteGroup;
 
-/*----------------------------------------------------
-Class: Player
-Description: The character the player controls
-Condition: Tidy
-Author: Jaxson Van Doorn, 2014
------------------------------------------------------*/
+/**
+    The character the player controls
+    Author: Jaxson Van Doorn
+**/
 class Player extends FlxSprite
 {
-    public static inline var switchDirrectionTop:Int = 460;
-    public static inline var switchDirrectionBottom:Int = 10760;
+    public static inline var SWITCH_DIRECTION_TOP:Int = 460;
+    public static inline var SWITCH_DIRECTION_BOTTOM:Int = 10760;
 
     public static var START_LOCATION_X = FlxG.width / 3 + 100;
-    public static inline var START_LOCATION_Y = switchDirrectionTop;
+    public static inline var START_LOCATION_Y = SWITCH_DIRECTION_TOP;
     private static inline var SWIM_SPEED:Int = 600;
     private static inline var DRAG:Int = 4;
     private static inline var ACCELERATION_X:Int = 21;
     private static inline var HIT_TIME:Int = 1200;
 
     private var hitTime:Int;
-    private var level:LevelGenerator;
+    private var level:Level;
     private var enemies:FlxTypedSpriteGroup<Enemy>;
     private var scoreValue:Int;
 
-    public function new(level:LevelGenerator, enemies:FlxTypedSpriteGroup<Enemy>):Void
+    public function new(level:Level, enemies:FlxTypedSpriteGroup<Enemy>):Void
     {
         this.level = level;
         this.enemies = enemies;
@@ -61,11 +59,6 @@ class Player extends FlxSprite
         hitBox();
     }
 
-    /*----------------------------------------------------
-    Function: Update
-    Description: Called 60 times a second
-    Returns: Void
-    -----------------------------------------------------*/
     override public function update(dt:Float):Void
     {
         // Rest Acceleration
@@ -110,15 +103,13 @@ class Player extends FlxSprite
         {
             acceleration.x = maxVelocity.x * ACCELERATION_X;
         }
-
         super.update(dt);
     }
 
-    /*----------------------------------------------------
-    Function: hitTolerance
-    Description: Makes sure the player is in contact with the enemy for a more than 0.01 of a second
-    Returns: Void
-    -----------------------------------------------------*/
+    /**
+        Makes sure the player is in contact with the enemy for a reasonable
+        amount of time to detect a hit
+    **/
     private function hitTolerance(dt:Float):Void
     {
         hitTime ++;
@@ -128,11 +119,9 @@ class Player extends FlxSprite
         }
     }
 
-    /*----------------------------------------------------
-    Function: resetPlayer
-    Description: Resets the player and the enemies
-    Returns: Void
-    -----------------------------------------------------*/
+    /**
+        Resets the player and the enemies
+    **/
     private function resetPlayer():Void
     {
         x = START_LOCATION_X;
@@ -145,13 +134,13 @@ class Player extends FlxSprite
         scoreValue = 0;
     }
 
-    /*----------------------------------------------------
-    Function: hitBox
-    Description: Adjust hitbox for facing right or left
-    Returns: Void
-    -----------------------------------------------------*/
+    /**
+        Adjust hitbox for facing right or left
+    **/
     private function hitBox():Void
     {
+        // Really bad practice to control the hitbox this way
+        // but was done a long time ago and it works fine
         width = 171;
         height = 150;
         if (scale.x > 0)
@@ -166,16 +155,14 @@ class Player extends FlxSprite
         }
     }
 
-    /*----------------------------------------------------
-    Function: switchDirrection
-    Description: Switch dirrection of the player
-    Returns: Void
-    -----------------------------------------------------*/
+    /**
+        Switch dirrection of the player
+    **/
     private function switchDirrection():Void
     {
 
         // Go Up
-        if (y > switchDirrectionBottom && isGoingDown())
+        if (y > SWITCH_DIRECTION_BOTTOM && isGoingDown())
         {
             // Switchs Dirrection
             acceleration.y = -SWIM_SPEED;
@@ -189,7 +176,7 @@ class Player extends FlxSprite
         }
 
         // Go Down
-        if (y < switchDirrectionTop && !isGoingDown())
+        if (y < SWITCH_DIRECTION_TOP && !isGoingDown())
         {
             // Switchs Dirrection
             acceleration.y = SWIM_SPEED;

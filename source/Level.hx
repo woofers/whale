@@ -13,24 +13,24 @@ import flixel.group.FlxSpriteGroup;
 /**
    Author: Jaxson Van Doorn
 **/
-class LevelGenerator
+class Level
 {
-    private var direction:Int;
+    // Sprites
     private var player:Player;
     private var enemies:FlxTypedSpriteGroup<Enemy>;
 
     // Spacing
-    private var y:Int;
-    private static inline var spawnSpacing = 950;
-    private static inline var ySpacingMax:Int = 600;
-    private static inline var ySpacingMin:Int = 550;
-    private static inline var spawnLimit:Int = 14;
+    private static inline var SPAWN_SPACING = 950;
+    private static inline var Y_SPACING_MAX:Int = 600;
+    private static inline var Y_SPACING_MIN:Int = 550;
+    private static inline var SPAWN_LIMIT:Int = 14;
 
+    // Eniemies
     private static inline var EEL:Int = 0;
     private static inline var LOBSTER:Int = 1;
 
-    private var lastSpawned:Int;
-    private var lastDirection:Int;
+    private var y:Int;
+    private var lastSpawned:Enemy;
     private var isUp:Bool;
 
     public function new(enemies:FlxTypedSpriteGroup<Enemy>):Void
@@ -43,19 +43,26 @@ class LevelGenerator
         this.player = player;
     }
 
+    private function typeOf(enemy:Enemy):String
+    {
+        if (enemy == null) return "";
+        return Type.getClassName(Type.getClass(enemy));
+    }
+
     public function generate(isUp:Bool = false):Void
     {
         this.isUp = isUp;
         y = startLocation();
-        for (i in 0... spawnLimit)
+        FlxG.log.notice("-----------------------");
+        for (i in 0... SPAWN_LIMIT)
         {
             if (isUp)
             {
-                y += FlxG.random.int(ySpacingMin, ySpacingMax);
+                y -= FlxG.random.int(Y_SPACING_MIN, Y_SPACING_MAX);
             }
             else
             {
-                y -= FlxG.random.int(ySpacingMin, ySpacingMax);
+                y += FlxG.random.int(Y_SPACING_MIN, Y_SPACING_MAX);
             }
 
             // Spawns a enemy
@@ -63,24 +70,39 @@ class LevelGenerator
             {
                 // Moving Eel
                 case EEL:
-                    addEel(FlxG.random.bool(50), y);
+                    FlxG.log.notice("Eel Spawned at " + y);
+                    addEel(FlxG.random.int(0, 1));
 
                 // Static Lobster
                 case LOBSTER:
-                    var max:Int = 3;
-                    var count:Int = 0;
-                    if (lastSpawned == LOBSTER) max = 2;
-                    for (i in 0... max)
-                    {
-                        if (lastDirection == i) continue;
-                        if (FlxG.random.bool(50) || count < 0 && i == 2)
-                        {
-                            addLobster(i, y);
-                            count ++;
-                        }
-                        if (count == 2) break;
-                    }
+                    FlxG.log.notice("Lobster(s) Spawned at " + y);
+                    addLobsters(3);
             }
+        }
+    }
+
+
+    public function addLobsters(max:Int):Void
+    {
+        var blocked:Int = -1;
+        switch (lastSpawned.getDirection())
+        {
+            case Lobster.LEFT:
+                blocked = Lobster.RIGHT;
+            case Lobster.RIGHT:
+                blocked = Lobster.LEFT;
+        }
+        max = FlxG.random.int(1, max);
+        var i:Int = 0;
+        var spawned:Int = 0;
+        while (i < max && spawned < max)
+        {
+            if (i != blocked)
+            {
+                addLobster(i, y);
+                spawned ++;
+            }
+            i ++;
         }
     }
 
@@ -89,12 +111,10 @@ class LevelGenerator
     Description: Spawn and add eels to the group
     Returns: Void
     -----------------------------------------------------*/
-    public function addEel(direction:Bool, posY:Int):Void
+    public function addEel(direction:Int):Void
     {
-        enemies.add(new Eel(player, direction, posY));
-        lastSpawned = EEL;
-        lastDirection = 0;
-        if (direction) lastDirection = 1;
+        lastSpawned = new Eel(player, direction, y);
+        enemies.add(lastSpawned);
     }
 
     /*----------------------------------------------------
@@ -104,9 +124,8 @@ class LevelGenerator
     -----------------------------------------------------*/
     public function addLobster(direction:Int, y:Int):Void
     {
-        enemies.add(new Lobster(direction, y));
-        lastSpawned = LOBSTER;
-        lastDirection = direction;
+        lastSpawned = new Lobster(direction, y);
+        enemies.add(lastSpawned);
     }
 
     public function removeEnemies():Void
@@ -115,6 +134,7 @@ class LevelGenerator
         {
             enemies.remove(enemies.getFirstAlive());
         }
+        lastSpawned = null;
     }
 
     /**
@@ -125,13 +145,14 @@ class LevelGenerator
     {
         if (isUp)
         {
-             return Player.switchDirrectionTop + spawnSpacing;
+            return Player.SWITCH_DIRECTION_BOTTOM - SPAWN_SPACING;
         }
-        return Player.switchDirrectionBottom - spawnSpacing;
+        return Player.SWITCH_DIRECTION_TOP + SPAWN_SPACING;
     }
 
     public function reset(isUp:Bool):Void
     {
+        this.isUp = isUp;
         removeEnemies();
         generate(isUp);
     }
@@ -143,7 +164,7 @@ class LevelGenerator
     **/
     public function random():Int
     {
-        if (lastSpawned == EEL)
+        if (typeOf(lastSpawned) == "Eel")
         {
             if (!FlxG.random.bool(38))
             {
@@ -151,7 +172,7 @@ class LevelGenerator
             }
             return LOBSTER;
         }
-        else if (lastSpawned == LOBSTER)
+        else if (typeOf(lastSpawned) == "Lobster")
         {
             if (!FlxG.random.bool(35))
             {

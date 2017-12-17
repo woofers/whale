@@ -11,8 +11,8 @@ import flixel.graphics.frames.FlxAtlasFrames;
 **/
 class Eel extends Enemy
 {
-    public static inline var LEFT:Bool = true;
-    public static inline var RIGHT:Bool = false;
+    private static inline var LEFT:Int = 0;
+    private static inline var RIGHT:Int = 1;
 
     private static inline var MOVING_SPEED:Int = 12;
     private static inline var ANIMATION_SPEED:Int = 9;
@@ -23,24 +23,26 @@ class Eel extends Enemy
 
     private var player:Player;
 
-    public function new(player:Player, direction:Bool, y:Int):Void
+    public function new(player:Player, direction:Int, y:Int):Void
     {
         this.player = player;
 
-        super();
+        // Set Direction
+        super(direction);
 
-        // Set Positions
-        setLocation(direction, y);
+        // Set Position
+        setLocation(y);
 
         // Load Spritesheet
         frames = FlxAtlasFrames.fromSparrow("assets/images/sprites/eel.png",
                                             "assets/images/sprites/eel.xml");
-
         // Create Animations
         animation.addByPrefix("swim", "Swim", ANIMATION_SPEED);
 
         // Playing Animation
         animation.play("swim");
+
+        // Set Score
         setScore(SCORE);
     }
 
@@ -67,10 +69,10 @@ class Eel extends Enemy
         super.update(dt);
     }
 
-    public function setLocation(direction:Bool, y:Int):Void
+    public function setLocation(y:Int):Void
     {
         this.y = y;
-        if (direction)
+        if (getDirection() == LEFT)
         {
             // Set Positions
             x = LEFT_LOCATION;
