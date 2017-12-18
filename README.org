@@ -5,7 +5,7 @@
 #+OPTIONS:  num:nil
 
 * Whale
-A 2D accelerometer game I built in 9th grade that went unfinished.  Finally found the motivation to finish the score keeping and level generation.
+Dodge eels and lobsters as they attempt to ruin your day.  Whale is a 2D accelerometer game I built in 9^th grade that went unfinished.  Finally found the motivation to finish the score keeping and level generation.
 ** Downloads
 ***** Android:
 ** Screenshots
@@ -31,9 +31,12 @@ A 2D accelerometer game I built in 9th grade that went unfinished.  Finally foun
 [[./screenshots/4.png]]
 
 ** Acknowledgments
-**** Font is [[http://www.1001fonts.com/littlelordfontleroy-font.html][Little Lord Fontleroy NF]] by Nick Curtis
-**** Build using [[http://haxeflixel.com/][HaxeFlixel]]
-**** Art by Avery Suzuki
-**** Designed and Programed by Jaxson Van Doorn
-**** Copyright 2014-2017, Jaxson Van Doorn and Avery Suzuki
+**** *Font is [[http://www.1001fonts.com/littlelordfontleroy-font.html][Little Lord Fontleroy NF]] by* /Nick Curtis/
+**** *Built using* [[http://haxeflixel.com/][HaxeFlixel]]
+**** *Art by* /Avery Suzuki/
+**** *Designed and Programed by* /Jaxson Van Doorn/
+**** *Copyright 2014-2017*, /Jaxson Van Doorn and Avery Suzuki/
 ** Other Projects
+*** [[https://github.com/woofers/java-projects/tree/master/Woofers3D][Woofers3D]]
+*** [[https://github.com/woofers/k9-krew][K9Krew]]
+*** [[https://github.com/woofers/dotfiles][Dotfiles]]

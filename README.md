@@ -7,7 +7,13 @@
 <li><a href="#sec-1-1">Downloads</a></li>
 <li><a href="#sec-1-2">Screenshots</a></li>
 <li><a href="#sec-1-3">Acknowledgments</a></li>
-<li><a href="#sec-1-4">Other Projects</a></li>
+<li><a href="#sec-1-4">Other Projects</a>
+<ul>
+<li><a href="#sec-1-4-1">Woofers3D</a></li>
+<li><a href="#sec-1-4-2">K9Krew</a></li>
+<li><a href="#sec-1-4-3">Dotfiles</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -17,7 +23,7 @@
 
 # Whale<a id="sec-1" name="sec-1"></a>
 
-A 2D accelerometer game I built in 9th grade that went unfinished.  Finally found the motivation to finish the score keeping and level generation.
+Dodge eels and lobsters as they attempt to ruin your day.  Whale is a 2D accelerometer game I built in 9<sup>th</sup> grade that went unfinished.  Finally found the motivation to finish the score keeping and level generation.
 
 ## Downloads<a id="sec-1-1" name="sec-1-1"></a>
 
@@ -37,14 +43,20 @@ A 2D accelerometer game I built in 9th grade that went unfinished.  Finally foun
 
 ## Acknowledgments<a id="sec-1-3" name="sec-1-3"></a>
 
--   Font is [Little Lord Fontleroy NF](http://www.1001fonts.com/littlelordfontleroy-font.html) by Nick Curtis
+-   **Font is [Little Lord Fontleroy NF](http://www.1001fonts.com/littlelordfontleroy-font.html) by** *Nick Curtis*
 
--   Build using [HaxeFlixel](http://haxeflixel.com/)
+-   **Built using** [HaxeFlixel](http://haxeflixel.com/)
 
--   Art by Avery Suzuki
+-   **Art by** *Avery Suzuki*
 
--   Designed and Programed by Jaxson Van Doorn
+-   **Designed and Programed by** *Jaxson Van Doorn*
 
--   Copyright 2014-2017, Jaxson Van Doorn and Avery Suzuki
+-   **Copyright 2014-2017**, *Jaxson Van Doorn and Avery Suzuki*
 
 ## Other Projects<a id="sec-1-4" name="sec-1-4"></a>
+
+### [Woofers3D](https://github.com/woofers/java-projects/tree/master/Woofers3D)<a id="sec-1-4-1" name="sec-1-4-1"></a>
+
+### [K9Krew](https://github.com/woofers/k9-krew)<a id="sec-1-4-2" name="sec-1-4-2"></a>
+
+### [Dotfiles](https://github.com/woofers/dotfiles)<a id="sec-1-4-3" name="sec-1-4-3"></a>
