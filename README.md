@@ -17,7 +17,9 @@
 
 # Whale<a id="sec-1" name="sec-1"></a>
 
-**Dodge eels and lobsters as they attempt to ruin your day.**  *Whale* is a 2D game I built in 9<sup>th</sup> grade that went unfinished.  Finally found the motivation to finish the score keeping and level generation.
+**Dodge eels and lobsters as they attempt to ruin your day.**
+
+*Whale* is a 2D game I built in 9<sup>th</sup> grade that went unfinished.  Finally found the motivation to finish the score keeping and level generation.
 
 ## Downloads<a id="sec-1-1" name="sec-1-1"></a>
 
