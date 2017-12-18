@@ -9,7 +9,8 @@ import flixel.math.FlxMath;
 **/
 class MyInput
 {
-    private static var accelerometerSensitivity:Float = 1;
+    private static inline var DEADZONE:Float = 0.8;
+    private static inline var CAP:Float = 2;
 
     public static function left():Bool
     {
@@ -22,7 +23,7 @@ class MyInput
 
         #elseif !FLX_NO_TOUCH
 
-            if (getAccelerometerX() >= accelerometerSensitivity)
+            if (getAccelerometerX() >= DEADZONE)
             {
                 return true;
             }
@@ -43,7 +44,7 @@ class MyInput
 
         #elseif !FLX_NO_TOUCH
 
-            if (getAccelerometerX() <= -accelerometerSensitivity)
+            if (getAccelerometerX() <= -DEADZONE)
             {
                 return true;
             }
@@ -53,6 +54,31 @@ class MyInput
         return false;
     }
 
+    public static function leftValue():Float
+    {
+        #if !FLX_NO_KEYBOARD
+
+            return 1;
+
+        #elseif !FLX_NO_TOUCH
+
+            return Math.max(getAccelerometerX() - DEADZONE, CAP) / CAP;
+
+        #end
+    }
+
+    public static function rightValue():Float
+    {
+        #if !FLX_NO_KEYBOARD
+
+            return 1;
+
+        #elseif !FLX_NO_TOUCH
+
+            return Math.max(getAccelerometerX() + DEADZONE, -CAP) / -CAP;
+
+        #end
+    }
     /**
         Gets `x` value of the accelerometer and converts it to an int
     **/

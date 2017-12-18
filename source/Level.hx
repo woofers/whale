@@ -75,7 +75,6 @@ class Level
 
                 // Static Lobster
                 case LOBSTER:
-                    FlxG.log.notice("Lobster(s) Spawned at " + y);
                     addLobsters(3);
             }
         }
@@ -95,10 +94,11 @@ class Level
         max = FlxG.random.int(1, max);
         var i:Int = 0;
         var spawned:Int = 0;
-        while (i < max && spawned < max)
+        while (i < max && spawned < max - 1)
         {
             if (i != blocked)
             {
+                FlxG.log.notice("Lobster Spawned at " + y);
                 addLobster(i, y);
                 spawned ++;
             }

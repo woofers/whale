@@ -1,0 +1,39 @@
+
+#+TITLE:	Whale
+#+AUTHOR:	Jaxson Van Doorn
+#+EMAIL:	jaxson.vandoorn@gmail.com
+#+OPTIONS:  num:nil
+
+* Whale
+A 2D accelerometer game I built in 9th grade that went unfinished.  Finally found the motivation to finish the score keeping and level generation.
+** Downloads
+***** Android:
+** Screenshots
+#+CAPTION: Title Screen
+#+NAME:    Title Screen
+[[./screenshots/1.png]]
+
+#+CAPTION: Screenshot 1
+#+NAME:    Screenshot 1
+[[./screenshots/1.png]]
+
+#+CAPTION: Screenshot 2
+#+NAME:    Screenshot 2
+[[./screenshots/2.png]]
+
+#+CAPTION: Screenshot 3
+#+NAME:    Screenshot 3
+[[./screenshots/3.png]]
+
+
+#+CAPTION: Screenshot 4
+#+NAME:    Screenshot 4
+[[./screenshots/4.png]]
+
+** Acknowledgments
+**** Font is [[http://www.1001fonts.com/littlelordfontleroy-font.html][Little Lord Fontleroy NF]] by Nick Curtis
+**** Build using [[http://haxeflixel.com/][HaxeFlixel]]
+**** Art by Avery Suzuki
+**** Designed and Programed by Jaxson Van Doorn
+**** Copyright 2014-2017, Jaxson Van Doorn and Avery Suzuki
+** Other Projects

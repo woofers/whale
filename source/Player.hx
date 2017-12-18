@@ -96,12 +96,12 @@ class Player extends FlxSprite
         // Left
         if (MyInput.left())
         {
-            acceleration.x = -maxVelocity.x * ACCELERATION_X;
+            acceleration.x = -maxVelocity.x * ACCELERATION_X * MyInput.leftValue();
         }
         // Right
         else if (MyInput.right())
         {
-            acceleration.x = maxVelocity.x * ACCELERATION_X;
+            acceleration.x = maxVelocity.x * ACCELERATION_X * MyInput.rightValue();
         }
         super.update(dt);
     }
