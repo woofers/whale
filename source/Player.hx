@@ -21,7 +21,7 @@ class Player extends FlxSprite
     public static inline var START_LOCATION_Y = SWITCH_DIRECTION_TOP;
     private static inline var SWIM_SPEED:Int = 600;
     private static inline var DRAG:Int = 4;
-    private static inline var ACCELERATION_X:Int = 21;
+    private static inline var ACCELERATION_X:Int = 18;
     private static inline var HIT_TIME:Int = 1200;
 
     private var hitTime:Int;

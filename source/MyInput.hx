@@ -9,7 +9,7 @@ import flixel.math.FlxMath;
 **/
 class MyInput
 {
-    private static var accelerometerSensitivity:Float = 0.4;
+    private static var accelerometerSensitivity:Float = 1;
 
     public static function left():Bool
     {
@@ -43,7 +43,7 @@ class MyInput
 
         #elseif !FLX_NO_TOUCH
 
-            if (getAccelerometerX() <= accelerometerSensitivity)
+            if (getAccelerometerX() <= -accelerometerSensitivity)
             {
                 return true;
             }
@@ -56,11 +56,11 @@ class MyInput
     /**
         Gets `x` value of the accelerometer and converts it to an int
     **/
-    private static function getAccelerometerX():Int
+    private static function getAccelerometerX():Float
     {
         #if mobile
 
-            return FlxMath.roundDecimal(FlxG.accelerometer.x, 2) * 10);
+            return FlxMath.roundDecimal(FlxG.accelerometer.x, 2) * 10;
 
         #end
 

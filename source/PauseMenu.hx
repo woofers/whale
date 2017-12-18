@@ -1,5 +1,6 @@
 package;
 
+import flash.system.System;
 import flixel.FlxG;
 import flixel.ui.FlxButton;
 import flixel.FlxSubState;
@@ -9,6 +10,7 @@ import flixel.graphics.frames.FlxBitmapFont;
 import flixel.text.FlxText;
 import openfl.Assets;
 import flixel.util.FlxColor;
+import openfl.Lib;
 
 /**
     Author: Jaxson Van Doorn
@@ -73,19 +75,19 @@ class PauseMenu extends FlxSubState
         add(scoreField);
 
         // Resume Button
-        resumeButton = new FlxButton(313, 1187, "", resumeGame);
+        resumeButton = new FlxButton(293, 977, "", resumeGame);
         resumeButton.loadGraphic("assets/images/ui/pause/play.png");
         resumeButton.scrollFactor.x = resumeButton.scrollFactor.y = 0;
         add(resumeButton);
 
         // Settings Button
-        settingsButton = new FlxButton(731, 1047, "", resumeGame);
+        settingsButton = new FlxButton(751, 827, "", resumeGame);
         settingsButton.loadGraphic("assets/images/ui/pause/settings.png");
         settingsButton.scrollFactor.x = settingsButton.scrollFactor.y = 0;
         add(settingsButton);
 
         // Exit Button
-        exitButton = new FlxButton(175, 1616, "", resumeGame);
+        exitButton = new FlxButton(145, 1436, "", closeGame);
         exitButton.loadGraphic("assets/images/ui/pause/exit.png");
         exitButton.scrollFactor.x = exitButton.scrollFactor.y = 0;
         add(exitButton);
@@ -106,5 +108,10 @@ class PauseMenu extends FlxSubState
 
         // Show Hidden UI Elements
         playState.showMenu();
+    }
+
+    private function closeGame():Void
+    {
+        Lib.exit();
     }
 }

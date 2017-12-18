@@ -140,7 +140,7 @@ class PlayState extends FlxState
 
     private function createPauseGameButton():Void
     {
-        pauseButton = new FlxButton(900, 20, "", pauseGame);
+        pauseButton = new FlxButton(896, 20, "", pauseGame);
         pauseButton.loadGraphic("assets/images/ui/pause/pause.png");
         pauseButton.scrollFactor.x = pauseButton.scrollFactor.y = 0;
         add(pauseButton);
