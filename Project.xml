@@ -80,5 +80,10 @@
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
 
-    <android target-sdk-version="26"/>
+
+    <haxelib name="extension-android-immersive" />
+
+    <set name="IMMERSIVE_FULL" />
+
+    <android target-sdk-version="19"/>
 </project>
