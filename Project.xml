@@ -2,7 +2,7 @@
 <project>
 	<!------------------------------APPLICATION SETTINGS---------------------------->
 
-	<app title="Whale" file="Whale" main="Main" version="0.0.1" company="HaxeFlixel" />
+	<app title="Whale" file="Whale" main="Main" version="1.0.0" company="jvandoorn" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 	<!--or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"!-->
@@ -62,7 +62,7 @@
 	<haxedef name="FLX_NO_GAMEPAD" />
 
 	<!--Disable the Flixel core sound tray-->
-	<!--haxedef name="FLX_NO_SOUND_TRAY" /-->
+	<haxedef name="FLX_NO_SOUND_TRAY" />
 
 	<!--Disable the Flixel sound management code-->
 	<!--haxedef name="FLX_NO_SOUND_SYSTEM" /-->

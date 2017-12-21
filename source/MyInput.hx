@@ -9,8 +9,8 @@ import flixel.math.FlxMath;
 **/
 class MyInput
 {
-    private static inline var DEADZONE:Float = 0.8;
-    private static inline var CAP:Float = 2;
+    private static inline var DEADZONE:Float = 0.5;
+    private static inline var CAP:Float = 1.45;
 
     public static function left():Bool
     {
