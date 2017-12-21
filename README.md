@@ -51,7 +51,7 @@
 
 ## Other Projects<a id="sec-1-4" name="sec-1-4"></a>
 
--   [Woofers3D](https://github.com/woofers/java-projects/tree/master/Woofers3D)
+-   [Woofers3D](https://github.com/woofers/woofers3d)
 
 -   [K9Krew](https://github.com/woofers/k9-krew)
 

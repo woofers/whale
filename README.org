@@ -44,6 +44,6 @@
 **** *Designed and Programed by* /Jaxson Van Doorn/
 **** *Copyright 2014-2017*, /Jaxson Van Doorn and Avery Suzuki/
 ** Other Projects
-**** [[https://github.com/woofers/java-projects/tree/master/Woofers3D][Woofers3D]]
+**** [[https://github.com/woofers/woofers3d][Woofers3D]]
 **** [[https://github.com/woofers/k9-krew][K9Krew]]
 **** [[https://github.com/woofers/dotfiles][Dotfiles]]
