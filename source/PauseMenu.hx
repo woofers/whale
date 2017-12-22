@@ -19,6 +19,8 @@ class PauseMenu extends FlxSubState
 {
     // Black Overlay
     private var darken:FlxSprite;
+    private var info:FlxSprite;
+    private var hasInfo:Bool;
 
     // Score Header
     private var scoreHeader:FlxSprite;
@@ -30,7 +32,7 @@ class PauseMenu extends FlxSubState
 
     // Buttons
     private var resumeButton:FlxButton;
-    private var settingsButton:FlxButton;
+    private var infoButton:FlxButton;
     private var exitButton:FlxButton;
 
     // PlayState
@@ -54,6 +56,13 @@ class PauseMenu extends FlxSubState
         darken.scale.x = 1080;
         darken.scale.y = 1920;
         add(darken);
+
+        // Game Info
+        info = new FlxSprite(0, 0, "assets/images/ui/menu/credits.png");
+        info.scrollFactor.x = info.scrollFactor.y = 0;
+        info.origin.x = darken.origin.y = 0;
+        info.visible = false;
+        add(info);
 
         // Score Header
         scoreHeader = new FlxSprite(127, 255, "assets/images/ui/pause/score.png");
@@ -80,11 +89,11 @@ class PauseMenu extends FlxSubState
         resumeButton.scrollFactor.x = resumeButton.scrollFactor.y = 0;
         add(resumeButton);
 
-        // Settings Button
-        settingsButton = new FlxButton(751, 827, "", resumeGame);
-        settingsButton.loadGraphic("assets/images/ui/pause/settings.png");
-        settingsButton.scrollFactor.x = settingsButton.scrollFactor.y = 0;
-        add(settingsButton);
+        // Info Button
+        infoButton = new FlxButton(751, 827, "", toggleGameInfo);
+        infoButton.loadGraphic("assets/images/ui/pause/info.png");
+        infoButton.scrollFactor.x = infoButton.scrollFactor.y = 0;
+        add(infoButton);
 
         // Exit Button
         exitButton = new FlxButton(145, 1436, "", closeGame);
@@ -108,6 +117,34 @@ class PauseMenu extends FlxSubState
 
         // Show Hidden UI Elements
         playState.showMenu();
+    }
+
+    private function toggleGameInfo():Void
+    {
+      if (hasInfo)
+      {
+          showScore();
+      }
+      else
+      {
+          showGameInfo();
+      }
+      this.hasInfo = !hasInfo;
+
+    }
+
+    private function showScore():Void
+    {
+        info.visible = false;
+        scoreHeader.visible = true;
+        scoreField.visible = true;
+    }
+
+    private function showGameInfo():Void
+    {
+        scoreHeader.visible = false;
+        scoreField.visible = false;
+        info.visible = true;
     }
 
     private function closeGame():Void
