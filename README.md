@@ -23,7 +23,7 @@
 
 ## Downloads<a id="sec-1-1" name="sec-1-1"></a>
 
--   Android
+Lastest realeases for Android can be found [here](https://github.com/woofers/whale/releases).
 
 ## Screenshots<a id="sec-1-2" name="sec-1-2"></a>
 
