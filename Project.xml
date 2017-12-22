@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	<!------------------------------APPLICATION SETTINGS---------------------------->
 
-	<app title="Whale" file="Whale" main="Main" version="1.0.0" company="jvandoorn" />
+	<!------------------------------APPLICATION SETTINGS---------------------------->
+    <meta title="Whale"
+        description="Dodge eels and lobsters as they attempt to ruin your day in the sea."
+        package="com.jaxson.whale" version="1.0.0" company="Jaxson Van Doorn" />
+
+	<app title="Whale" file="Whale" main="Main" version="1.0.0" company="Jaxson Van Doorn" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 	<!--or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"!-->
