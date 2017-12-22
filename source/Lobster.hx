@@ -21,7 +21,7 @@ class Lobster extends Enemy
     private static inline var RIGHT_LOCATION:Int = 800;
     private static inline var MIDDLE_LOCATION:Int = 350;
 
-    private static inline var ANIMATION_SPEED:Int = 9;
+    private static inline var ANIMATION_SPEED:Int = 7;
 
     public function new(direction:Int, y):Void
     {
