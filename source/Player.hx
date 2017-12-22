@@ -59,6 +59,12 @@ class Player extends FlxSprite
         hitBox();
     }
 
+    override public function kill():Void
+    {
+        this.enemies = null;
+        super.kill();
+    }
+
     override public function update(dt:Float):Void
     {
         // Rest Acceleration

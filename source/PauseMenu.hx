@@ -39,9 +39,10 @@ class PauseMenu extends FlxSubState
     private var playState:PlayState;
 
 
-    public function new(playState:PlayState):Void
+    public function new(playState:PlayState, fontStyle:FlxBitmapFont):Void
     {
         super();
+        this.fontStyle = fontStyle;
         this.playState = playState;
     }
 
@@ -68,11 +69,6 @@ class PauseMenu extends FlxSubState
         scoreHeader = new FlxSprite(127, 255, "assets/images/ui/pause/score.png");
         scoreHeader.scrollFactor.x = scoreHeader.scrollFactor.y = 0;
         add(scoreHeader);
-
-        // Font Style
-        fontStyle = FlxBitmapFont.fromAngelCode(
-                        Assets.getBitmapData("assets/font/font.png"),
-                        Xml.parse(Assets.getText("assets/font/font.fnt")));
 
         // Score
         scoreField = new FlxBitmapText(fontStyle);
@@ -107,13 +103,35 @@ class PauseMenu extends FlxSubState
         super.update(dt);
     }
 
+    override public function destroy():Void
+    {
+        darken.kill();
+        info.kill();
+        scoreHeader.kill();
+        scoreField.destroy();
+        resumeButton.destroy();
+        infoButton.destroy();
+        exitButton.destroy();
+
+        darken = null;
+        info = null;
+        scoreHeader = null;
+        scoreValue = null;
+        scoreField = null;
+        fontStyle = null;
+        resumeButton = null;
+        infoButton = null;
+        exitButton = null;
+        super.destroy();
+    }
+
     /**
         Exits the pause menu state
     **/
     private function resumeGame():Void
     {
         close();
-        playState.createPauseMenu();
+        //playState.createPauseMenu();
 
         // Show Hidden UI Elements
         playState.showMenu();

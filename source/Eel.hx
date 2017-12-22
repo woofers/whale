@@ -48,6 +48,7 @@ class Eel extends Enemy
 
     override public function kill():Void
     {
+        this.player = null;
         super.kill();
     }
 

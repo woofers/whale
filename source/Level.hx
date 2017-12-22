@@ -49,6 +49,14 @@ class Level
         return Type.getClassName(Type.getClass(enemy));
     }
 
+    public function kill():Void
+    {
+        this.player = null;
+        removeEnemies();
+        this.enemies.kill();
+        this.enemies = null;
+    }
+
     public function generate(isUp:Bool = false):Void
     {
         this.isUp = isUp;
@@ -130,10 +138,14 @@ class Level
 
     public function removeEnemies():Void
     {
+        var remove:Enemy;
         for (i in 0... enemies.countLiving())
         {
-            enemies.remove(enemies.getFirstAlive());
+            remove = enemies.getFirstAlive();
+            enemies.remove(remove);
+            remove.destroy();
         }
+        remove = null;
         lastSpawned = null;
     }
 

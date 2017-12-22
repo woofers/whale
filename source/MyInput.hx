@@ -79,6 +79,7 @@ class MyInput
 
         #end
     }
+
     /**
         Gets `x` value of the accelerometer and converts it to an int
     **/

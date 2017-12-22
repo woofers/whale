@@ -76,6 +76,23 @@ class PlayState extends FlxState
 
     override public function destroy():Void
     {
+        enemies = null;
+        level.kill();
+        player.kill();
+        scoreHeader.kill();
+        scoreField.destroy();
+        pauseButton.kill();
+        pauseMenu.destroy();
+        fontStyle.destroy();
+
+        level = null;
+        player = null;
+        scoreHeader = null;
+        scoreField = null;
+        pauseButton = null;
+        pauseMenu = null;
+        fontStyle = null;
+
         super.destroy();
     }
 
@@ -135,7 +152,7 @@ class PlayState extends FlxState
 
     public function createPauseMenu():Void
     {
-        pauseMenu = new PauseMenu(this);
+        pauseMenu = new PauseMenu(this, fontStyle);
     }
 
     private function createPauseGameButton():Void
