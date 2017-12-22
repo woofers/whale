@@ -78,12 +78,23 @@
 
 	<!--------------------------------CUSTOM---------------------------------------->
 
-	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
 
+    <!--Icon-->
+    <icon path="assets/images/icon.png"/>
 
-    <haxelib name="extension-android-immersive" />
+    <section if="android">
 
-    <set name="IMMERSIVE_FULL" />
+        <!--Window Settings-->
+        <window vsync="true" antialiasing="4" />
+        <window orientation="portrait" />
 
-    <android target-sdk-version="19"/>
+    	<!--Immersive Android Plug-In-->
+        <haxelib name="extension-android-immersive" />
+        <set name="IMMERSIVE_FULL" />
+
+    	<!--Use Android 4.4.2 due to HaxeFlixel's
+            comptability problemes with newever versions of lime-->
+        <android target-sdk-version="19"/>
+    </section>
+
 </project>
