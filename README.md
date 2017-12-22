@@ -17,13 +17,13 @@
 
 # Whale<a id="sec-1" name="sec-1"></a>
 
-**Dodge eels and lobsters as they attempt to ruin your day.**
+**Dodge eels and lobsters as they attempt to ruin your day in the sea.**
 
 *Whale* is a 2D game I built in 9<sup>th</sup> grade that went unfinished.  Finally found the motivation to finish the score keeping and level generation.
 
 ## Downloads<a id="sec-1-1" name="sec-1-1"></a>
 
-Lastest realeases for Android can be found [here](https://github.com/woofers/whale/releases).
+Latest releases for Android can be found [here](https://github.com/woofers/whale/releases).
 
 ## Screenshots<a id="sec-1-2" name="sec-1-2"></a>
 

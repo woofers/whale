@@ -5,11 +5,11 @@
 #+OPTIONS:  num:nil
 
 * Whale
-*Dodge eels and lobsters as they attempt to ruin your day.*
+*Dodge eels and lobsters as they attempt to ruin your day in the sea.*
 
 /Whale/ is a 2D game I built in 9^th grade that went unfinished.  Finally found the motivation to finish the score keeping and level generation.
 ** Downloads
-Lastest realeases for Android can be found [[https://github.com/woofers/whale/releases][here]].
+Latest releases for Android can be found [[https://github.com/woofers/whale/releases][here]].
 ** Screenshots
 #+CAPTION: Title Screen
 #+NAME:    Title Screen
