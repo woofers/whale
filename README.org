@@ -10,6 +10,8 @@
 /Whale/ is a 2D game I built in 9^th grade that went unfinished.  Finally found the motivation to finish the score keeping and level generation.
 ** Downloads
 Latest releases for Android can be found [[https://github.com/woofers/whale/releases][here]].
+
+Can also be downloaded from [[https://play.google.com/store/apps/details?id=com.jaxson.whale][Google Play Store]].
 ** Screenshots
 #+CAPTION: Title Screen
 #+NAME:    Title Screen

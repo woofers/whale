@@ -25,6 +25,8 @@
 
 Latest releases for Android can be found [here](https://github.com/woofers/whale/releases).
 
+Can also be downloaded from [Google Play Store](https://play.google.com/store/apps/details?id=com.jaxson.whale).
+
 ## Screenshots<a id="sec-1-2" name="sec-1-2"></a>
 
 ![img](./screenshots/1.png "Title Screen")
