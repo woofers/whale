@@ -78,7 +78,7 @@
 	<!--Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />
 
-	<!--Enable this for Nape release builds for a serious peformance improvement-->
+	<!--Enable this for Nape release builds for a serious performance improvement-->
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
 
 	<!--------------------------------CUSTOM---------------------------------------->
@@ -98,11 +98,14 @@
         <set name="IMMERSIVE_FULL" />
 
     	<!--Use Android 4.4.2 due to HaxeFlixel's
-            comptability problemes with newever versions of lime-->
+            compatibility problemes with newer versions of lime-->
         <android target-sdk-version="19"/>
 
     	<!--Private Android Release Key-->
         <certificate path="key.jks" alias="Android Key"/>
+
+        <!--Override Android Manifest to Remove Permissions-->
+        <template path="AndroidManifest.xml" rename="AndroidManifest.xml"/>
 
     </section>
 
