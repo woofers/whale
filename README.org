@@ -12,6 +12,13 @@
 Latest releases for Android can be found [[https://github.com/woofers/whale/releases][here]].
 
 Can also be downloaded from [[https://play.google.com/store/apps/details?id=com.jaxson.whale][Google Play Store]].
+
+#+HTML: <a
+#+HTML:      href='https://play.google.com/store/apps/details?id=com.jaxson.whale&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+#+HTML:     <img alt='Get it on Google Play'
+#+HTML:     src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/>
+#+HTML: </a>
+
 ** Screenshots
 #+CAPTION: Title Screen
 #+NAME:    Title Screen
