@@ -5,7 +5,7 @@
 
     <meta title="Whale"
         description="Dodge eels and lobsters as they attempt to ruin your day in the sea."
-        package="com.jaxson.whale" version="1.0.1" company="Jaxson Van Doorn" />
+        package="com.jaxson.whale" version="1.0.2" company="Jaxson Van Doorn" />
 
 	<app title="Whale" file="Whale" main="Main" version="1.0.1" company="Jaxson Van Doorn" />
 
