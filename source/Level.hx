@@ -61,7 +61,6 @@ class Level
     {
         this.isUp = isUp;
         y = startLocation();
-        FlxG.log.notice("-----------------------");
         for (i in 0... SPAWN_LIMIT)
         {
             if (isUp)
@@ -142,8 +141,6 @@ class Level
             remove = enemies.getFirstAlive();
             enemies.remove(remove);
             remove.destroy();
-
-            FlxG.log.notice("Removing Spawned at " + i);
         }
         remove = null;
         lastSpawned = null;
