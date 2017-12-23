@@ -22,6 +22,7 @@ class Lobster extends Enemy
     private static inline var MIDDLE_LOCATION:Int = 350;
 
     private static inline var ANIMATION_SPEED:Int = 7;
+    private static inline var SCORE = 7;
 
     public function new(direction:Int, y):Void
     {
@@ -44,6 +45,9 @@ class Lobster extends Enemy
 
         // Playing Animation
         animation.play("grab");
+
+        // Set Score
+        setScore(SCORE);
     }
 
     override public function kill():Void

@@ -78,7 +78,6 @@ class Level
             {
                 // Moving Eel
                 case EEL:
-                    FlxG.log.notice("Eel Spawned at " + y);
                     addEel(FlxG.random.int(0, 1));
 
                 // Static Lobster
@@ -106,7 +105,6 @@ class Level
         {
             if (i != blocked)
             {
-                FlxG.log.notice("Lobster Spawned at " + y);
                 addLobster(i, y);
                 spawned ++;
             }
@@ -144,6 +142,8 @@ class Level
             remove = enemies.getFirstAlive();
             enemies.remove(remove);
             remove.destroy();
+
+            FlxG.log.notice("Removing Spawned at " + i);
         }
         remove = null;
         lastSpawned = null;

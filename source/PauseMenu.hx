@@ -131,7 +131,7 @@ class PauseMenu extends FlxSubState
     private function resumeGame():Void
     {
         close();
-        //playState.createPauseMenu();
+        playState.createPauseMenu();
 
         // Show Hidden UI Elements
         playState.showMenu();
