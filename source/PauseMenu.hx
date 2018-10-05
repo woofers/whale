@@ -167,6 +167,8 @@ class PauseMenu extends FlxSubState
 
     private function closeGame():Void
     {
+        #if FLX_NO_KEYBOARD
         Lib.exit();
+        #end
     }
 }
