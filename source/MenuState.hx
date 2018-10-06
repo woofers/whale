@@ -15,6 +15,8 @@ class MenuState extends FlxState
     {
         super.create();
 
+        FlxG.mouse.useSystemCursor = true;
+
         // Add BG
         bg = new FlxButton(0, 0, "", startGame);
         bg.loadGraphic("assets/images/ui/menu/startScreen.png");

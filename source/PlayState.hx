@@ -47,6 +47,8 @@ class PlayState extends FlxState
     {
         super.create();
 
+        FlxG.mouse.useSystemCursor = true;
+
         createBackground();
         createText();
 
