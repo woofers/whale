@@ -96,6 +96,11 @@ class PauseMenu extends FlxSubState
         exitButton.loadGraphic("assets/images/ui/pause/exit.png");
         exitButton.scrollFactor.x = exitButton.scrollFactor.y = 0;
         add(exitButton);
+
+        // Hide Exit Button on Web
+        #if !FLX_NO_KEYBOARD
+        exitButton.alpha = 0;
+        #end
     }
 
     override public function update(dt:Float):Void
