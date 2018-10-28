@@ -74,6 +74,7 @@ class PlayState extends FlxState
         // Camera
         FlxG.camera.setScrollBoundsRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, false);
         FlxG.camera.follow(player, FlxCameraFollowStyle.PLATFORMER);
+        FlxG.camera.antialiasing = true;
     }
 
     override public function destroy():Void

@@ -16,6 +16,7 @@ class MenuState extends FlxState
         super.create();
 
         FlxG.mouse.useSystemCursor = true;
+        FlxG.camera.antialiasing = true;
 
         // Add BG
         bg = new FlxButton(0, 0, "", startGame);
