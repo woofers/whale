@@ -3,6 +3,12 @@
   "version": "1.0.3",
   "description": "Dodge eels and lobsters as they attempt to ruin your day in the sea",
   "main": "dist/Whale.js",
+  "files": [
+    "dist",
+    "License.txt",
+    "package.json",
+    "README.md"
+  ],
   "scripts": {
     "postinstall": "yarn install-lime && yarn install-openfl && yarn install-flixel",
     "install-openfl": "haxelib install openfl 8.6.4",
