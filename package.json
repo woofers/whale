@@ -1,0 +1,26 @@
+{
+  "name": "whale-dive",
+  "version": "1.0.3",
+  "description": "Dodge eels and lobsters as they attempt to ruin your day in the sea",
+  "main": "export/html5/bin/Whale.js",
+  "scripts": {
+    "test": "echo 'No tests'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woofers/whale.git"
+  },
+  "keywords": [
+    "whale",
+    "flixel",
+    "haxe",
+    "haxeflixel",
+    "mobile"
+  ],
+  "author": "Jaxson Van Doorn <jaxson.vandoorn@gmail.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/woofers/whale/issues"
+  },
+  "homepage": "https://github.com/woofers/whale#readme"
+}
