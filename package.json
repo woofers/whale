@@ -22,5 +22,15 @@
   "bugs": {
     "url": "https://github.com/woofers/whale/issues"
   },
-  "homepage": "https://github.com/woofers/whale#readme"
+  "homepage": "https://github.com/woofers/whale#readme",
+  "dependencies": {
+    "haxe": "^5.0.10"
+  },
+  "haxeDependencies": {
+    "haxe": "3.4.7",
+    "haxelib": "3.3.0",
+    "neko": "2.1.0",
+    "lime": "7.1.1",
+    "openfl": "8.6.4"
+  }
 }
