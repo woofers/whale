@@ -4,6 +4,12 @@
   "description": "Dodge eels and lobsters as they attempt to ruin your day in the sea",
   "main": "export/html5/bin/Whale.js",
   "scripts": {
+    "postinstall": "yarn install-lime && yarn install-openfl && yarn install-flixel",
+    "install-openfl": "haxelib install openfl 8.6.4",
+    "install-lime": "haxelib install lime 7.1.1",
+    "install-flixel": "haxelib install flixel 4.5.1",
+    "clean": "rm -rf export",
+    "build": "yarn clean && haxelib run openfl build Project.xml html5 && ./build.sh",
     "test": "echo 'No tests'"
   },
   "repository": {
@@ -29,8 +35,6 @@
   "haxeDependencies": {
     "haxe": "3.4.7",
     "haxelib": "3.3.0",
-    "neko": "2.1.0",
-    "lime": "7.1.1",
-    "openfl": "8.6.4"
+    "neko": "2.1.0"
   }
 }
