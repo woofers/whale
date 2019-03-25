@@ -2,14 +2,15 @@
   "name": "whale-dive",
   "version": "1.0.3",
   "description": "Dodge eels and lobsters as they attempt to ruin your day in the sea",
-  "main": "export/html5/bin/Whale.js",
+  "main": "dist/Whale.js",
   "scripts": {
     "postinstall": "yarn install-lime && yarn install-openfl && yarn install-flixel",
     "install-openfl": "haxelib install openfl 8.6.4",
     "install-lime": "haxelib install lime 7.1.1",
     "install-flixel": "haxelib install flixel 4.5.1",
-    "clean": "rm -rf export",
-    "build": "yarn clean && haxelib run openfl build Project.xml html5 && ./build.sh",
+    "clean": "rm -rf dist",
+    "build": "yarn clean && haxelib run openfl build Project.xml html5 && yarn move && ./css.sh",
+    "move": "mv export/html5/bin dist && rm -rf export",
     "test": "echo 'No tests'"
   },
   "repository": {

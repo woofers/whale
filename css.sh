@@ -2,7 +2,7 @@
 
 # Setup
 set -o noclobber
-OUT=export/html5/bin
+OUT=dist
 INDEX=$OUT/index.html
 TEMP=$OUT/temp.html
 
