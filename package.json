@@ -36,7 +36,7 @@
     "url": "https://github.com/woofers/whale/issues"
   },
   "homepage": "https://github.com/woofers/whale#readme",
-  "dependencies": {
+  "devDependencies": {
     "haxe": "^5.0.10"
   },
   "haxeDependencies": {
