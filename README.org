@@ -2,12 +2,14 @@
 #+TITLE:	Whale
 #+AUTHOR:	Jaxson Van Doorn
 #+EMAIL:	jaxson.vandoorn@gmail.com
-#+OPTIONS:  num:nil
+#+OPTIONS:  num:nil toc:nil
 
 * Whale
 *Dodge eels and lobsters as they attempt to ruin your day in the sea.*
 
 /Whale/ is a 2D game I built in 9^th grade that went unfinished.  Finally found the motivation to finish the score keeping and level generation.
+
+Built using [[http://haxeflixel.com/][HaxeFlixel]]. In-game font is [[http://www.1001fonts.com/littlelordfontleroy-font.html][Little Lord Fontleroy NF]] by [[https://www.1001fonts.com/users/nicksfonts/][Nick Curtis]].
 ** Downloads
 Latest releases for Android can be found [[https://github.com/woofers/whale/releases][here]].
 
@@ -50,10 +52,3 @@ Can also be downloaded from [[https://play.google.com/store/apps/details?id=com.
 #+NAME:    Screenshot 4
 #+ATTR_HTML: :style margin-left: auto; margin-right: auto;
 [[./screenshots/4.png]]
-
-** Acknowledgments
-**** *Font is* [[http://www.1001fonts.com/littlelordfontleroy-font.html][Little Lord Fontleroy NF]] *by* /Nick Curtis/
-**** *Built using* [[http://haxeflixel.com/][HaxeFlixel]]
-**** *Art by* /Avery Suzuki/
-**** *Designed and Programed by* /Jaxson Van Doorn/
-**** *Copyright 2014-2017*, /Jaxson Van Doorn and Avery Suzuki/

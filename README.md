@@ -1,14 +1,4 @@
 
-# Table of Contents
-
--   [Whale](#orgd8347bf)
-    -   [Downloads](#org7c4053f)
-    -   [Screenshots](#orge9100da)
-    -   [Acknowledgments](#orgf80f80a)
-
-
-
-<a id="orgd8347bf"></a>
 
 # Whale
 
@@ -16,8 +6,8 @@
 
 *Whale* is a 2D game I built in 9<sup>th</sup> grade that went unfinished.  Finally found the motivation to finish the score keeping and level generation.
 
+Built using [HaxeFlixel](http://haxeflixel.com/). In-game font is [Little Lord Fontleroy NF](http://www.1001fonts.com/littlelordfontleroy-font.html) by [Nick Curtis](https://www.1001fonts.com/users/nicksfonts/).
 
-<a id="org7c4053f"></a>
 
 ## Downloads
 
@@ -29,15 +19,13 @@ Can also be downloaded from [Google Play Store](https://play.google.com/store/ap
 <a
     href='https://play.google.com/store/apps/details?id=com.jaxson.whale&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
     <img alt='Get it on Google Play'
-        src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'
+        src='https://play.google.com/intl/en<sub>us</sub>/badges/images/generic/en<sub>badge</sub><sub>web</sub><sub>generic.png</sub>'
         height="125" width="323"
     />
 </a>
 
 </div>
 
-
-<a id="orge9100da"></a>
 
 ## Screenshots
 
@@ -50,18 +38,3 @@ Can also be downloaded from [Google Play Store](https://play.google.com/store/ap
 ![img](./screenshots/3.png "Screenshot 3")
 
 ![img](./screenshots/4.png "Screenshot 4")
-
-
-<a id="orgf80f80a"></a>
-
-## Acknowledgments
-
--   **Font is** [Little Lord Fontleroy NF](http://www.1001fonts.com/littlelordfontleroy-font.html) **by** *Nick Curtis*
-
--   **Built using** [HaxeFlixel](http://haxeflixel.com/)
-
--   **Art by** *Avery Suzuki*
-
--   **Designed and Programed by** *Jaxson Van Doorn*
-
--   **Copyright 2014-2017**, *Jaxson Van Doorn and Avery Suzuki*
