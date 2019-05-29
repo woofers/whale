@@ -8,12 +8,14 @@
 
 Built using [HaxeFlixel](http://haxeflixel.com/). In-game font is [Little Lord Fontleroy NF](http://www.1001fonts.com/littlelordfontleroy-font.html) by [Nick Curtis](https://www.1001fonts.com/users/nicksfonts/).
 
+**[Play Online](https://jaxson.vandoorn.ca/projects/whale/)**
+
 
 ## Downloads
 
 Latest releases for Android can be found [here](https://github.com/woofers/whale/releases).
 
-Can also be downloaded from [Google Play Store](https://play.google.com/store/apps/details?id=com.jaxson.whale).
+They can also be downloaded from [Google Play Store](https://play.google.com/store/apps/details?id=com.jaxson.whale).
 
 <a
     href='https://play.google.com/store/apps/details?id=com.jaxson.whale&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>

@@ -10,10 +10,13 @@
 /Whale/ is a 2D game I built in 9^th grade that went unfinished.  Finally found the motivation to finish the score keeping and level generation.
 
 Built using [[http://haxeflixel.com/][HaxeFlixel]]. In-game font is [[http://www.1001fonts.com/littlelordfontleroy-font.html][Little Lord Fontleroy NF]] by [[https://www.1001fonts.com/users/nicksfonts/][Nick Curtis]].
+
+*[[https://jaxson.vandoorn.ca/projects/whale/][Play Online]]*
+
 ** Downloads
 Latest releases for Android can be found [[https://github.com/woofers/whale/releases][here]].
 
-Can also be downloaded from [[https://play.google.com/store/apps/details?id=com.jaxson.whale][Google Play Store]].
+They can also be downloaded from [[https://play.google.com/store/apps/details?id=com.jaxson.whale][Google Play Store]].
 
 #+BEGIN_export HTML
 <a
