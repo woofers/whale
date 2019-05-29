@@ -15,7 +15,7 @@ Latest releases for Android can be found [[https://github.com/woofers/whale/rele
 
 Can also be downloaded from [[https://play.google.com/store/apps/details?id=com.jaxson.whale][Google Play Store]].
 
-#+BEGIN_HTML
+#+BEGIN_export HTML
 <a
     href='https://play.google.com/store/apps/details?id=com.jaxson.whale&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
     <img alt='Get it on Google Play'
@@ -23,32 +23,11 @@ Can also be downloaded from [[https://play.google.com/store/apps/details?id=com.
         height="125" width="323"
     />
 </a>
-#+END_HTML
+#+END_EXPORT
 
 
 ** Screenshots
-#+CAPTION: Title Screen
-#+NAME:    Title Screen
-#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
-[[./screenshots/1.png]]
 
-#+CAPTION: Screenshot 1
-#+NAME:    Screenshot 1
-#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
-[[./screenshots/1.png]]
+[[./screenshots/1.png]] [[./screenshots/2.png]]
 
-#+CAPTION: Screenshot 2
-#+NAME:    Screenshot 2
-#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
-[[./screenshots/2.png]]
-
-#+CAPTION: Screenshot 3
-#+NAME:    Screenshot 3
-#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
-[[./screenshots/3.png]]
-
-
-#+CAPTION: Screenshot 4
-#+NAME:    Screenshot 4
-#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
-[[./screenshots/4.png]]
+[[./screenshots/3.png]] [[./screenshots/4.png]]
