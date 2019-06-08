@@ -8,7 +8,7 @@
 
 Built using [HaxeFlixel](http://haxeflixel.com/). In-game font is [Little Lord Fontleroy NF](http://www.1001fonts.com/littlelordfontleroy-font.html) by [Nick Curtis](https://www.1001fonts.com/users/nicksfonts/).
 
-**[Play Online](https://jaxson.vandoorn.ca/projects/whale/)**
+**[Play Online](https://jaxson.vandoorn.ca/projects/whale/play/)**
 
 
 ## Downloads

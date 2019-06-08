@@ -11,7 +11,7 @@
 
 Built using [[http://haxeflixel.com/][HaxeFlixel]]. In-game font is [[http://www.1001fonts.com/littlelordfontleroy-font.html][Little Lord Fontleroy NF]] by [[https://www.1001fonts.com/users/nicksfonts/][Nick Curtis]].
 
-*[[https://jaxson.vandoorn.ca/projects/whale/][Play Online]]*
+*[[https://jaxson.vandoorn.ca/projects/whale/play/][Play Online]]*
 
 ** Downloads
 Latest releases for Android can be found [[https://github.com/woofers/whale/releases][here]].
